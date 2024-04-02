@@ -1,0 +1,13 @@
+pkgbase = libcrash-bash
+	pkgdesc = A collection of bash utility functions.
+	pkgver = 0.0.0.0.0.0.1
+	pkgrel = 1
+	url = https://github.com/themartiancompany/crash-bash
+	arch = any
+	license = AGPL3
+	checkdepends = shellcheck
+	depends = bash
+	source = libcrash-bash-0.0.0.0.0.0.1.tar.gz::https://github.com/themartiancompany/crash-bash/archive/refs/tags/0.0.0.0.0.0.1.tar.gz
+	sha256sums = b6996574dd16012457ff434b228c80d884c12b9806056ac0a8214b994e46a338
+
+pkgname = libcrash-bash
