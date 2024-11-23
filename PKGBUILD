@@ -7,8 +7,8 @@ _offline="false"
 _git="false"
 _pkg="crash-bash"
 pkgname="lib${_pkg}"
-pkgver="0.0.0.0.0.0.1.1.1.1"
-_commit="8565eeb5165fe794270528255cedcf907752ec8e"
+pkgver="0.0.0.0.0.0.1.1.1.1.1"
+_commit="cb65dd5d620a0086151cbcf3b96a9c79c2fa0d2b"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -59,7 +59,7 @@ _url="${url}"
     "${pkgname}-${pkgver}.tar.gz::${_url}/archive/refs/tags/${pkgver}.tar.gz"
   ) && \
   sha256sums+=(
-    'c6f1a826c8cd4acfe467c0eb8d5629bc4ddaf371a40e18d8165093d99ae80c2e'
+    '401ce16e6180f71979ca26198d89a9164ff2beecdd9fca7c7a2c2b4512079e23'
   )
 
 check() {
