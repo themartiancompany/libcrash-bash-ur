@@ -3,6 +3,8 @@
 # Maintainer: Truocolo <truocolo@aol.com>
 # Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
 
+_py="python"
+_py2="python2"
 _offline="false"
 _git="false"
 _pkg="crash-bash"
@@ -30,6 +32,8 @@ _os="$( \
   uname \
     -o)"
 optdepends=(
+  "${_py}-pygments: colorized output and syntax highlighting"
+  "${_py2}-pygments: colorized output and syntax highlighting (Python 2)"
 )
 [[ "${_os}" != "GNU/Linux" ]] && \
 [[ "${_os}" == "Android" ]] && \
