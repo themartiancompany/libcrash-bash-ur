@@ -1,6 +1,26 @@
 # SPDX-License-Identifier: AGPL-3.0
+
+#    ----------------------------------------------------------------------
+#    Copyright © 2024, 2025  Pellegrino Prevete
 #
+#    All rights reserved
+#    ----------------------------------------------------------------------
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 # Maintainer: Truocolo <truocolo@aol.com>
+# Maintainer: Truocolo <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
 # Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
 
 _py="python"
@@ -9,8 +29,8 @@ _offline="false"
 _git="false"
 _pkg="crash-bash"
 pkgname="lib${_pkg}"
-pkgver="0.0.0.0.0.0.1.1.1.1.1"
-_commit="cb65dd5d620a0086151cbcf3b96a9c79c2fa0d2b"
+pkgver="0.0.0.0.0.0.1.1.1.1.1.1"
+_commit="56fde992c1c65b57c22eb8e3a9e9a851d28518df"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -48,23 +68,22 @@ sha256sums=()
 _url="${url}"
 [[ "${_offline}" == "true" ]] && \
   url="file://${HOME}/${_pkg}"
-[[ "${_git}" == true ]] && \
+if [[ "${_git}" == true ]]; then
   makedepends+=(
     "git"
-  ) && \
-  source+=(
-    "${pkgname}-${pkgver}::git+${_url}#tag=${pkgver}"
-  ) && \
-  sha256sums+=(
-    SKIP
   )
-[[ "${_git}" == false ]] && \
-  source+=(
-    "${pkgname}-${pkgver}.tar.gz::${_url}/archive/refs/tags/${pkgver}.tar.gz"
-  ) && \
-  sha256sums+=(
-    '401ce16e6180f71979ca26198d89a9164ff2beecdd9fca7c7a2c2b4512079e23'
-  )
+  _src="${pkgname}-${pkgver}::git+${_url}#tag=${pkgver}"
+  _sum='SKIP'
+elif [[ "${_git}" == false ]]; then
+  _src="${pkgname}-${pkgver}.tar.gz::${_url}/archive/refs/tags/${pkgver}.tar.gz"
+  _sum='889803bd83774efe2bbd576855c61b45a38656a63e1d066ac4b62ac6985b7236'
+fi
+source+=(
+  "${_src}"
+)
+sha256sums+=(
+  "${_sum}"
+)
 
 check() {
   cd \
