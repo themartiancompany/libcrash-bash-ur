@@ -45,8 +45,8 @@ _offline="false"
 _git="false"
 _pkg=crash-bash
 pkgname="lib${_pkg}"
-pkgver="0.0.0.0.0.0.1.1.1.1.1.1.1.1"
-_commit="f868cac6376ac71348712221d35519eafd115047"
+pkgver="0.0.0.0.0.1"
+_commit="941f49e7c40dfd6a160a67c3c22df5eb43a08e4e"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -88,10 +88,10 @@ _tarname="${_pkg}-${_tag}"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum='8b9afa4eb1aa977d1e483fad6276af6b3c1162d458e2d29e832af691027c238b'
+_archive_sum='5604a5c4544b2b028aa4416f2942eb09862a8b906898d49571852c6a31bcc9b3'
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
-_arhive_sig_sum="dcdc73d95788e3c4f4e481c32a65b8a180e306f6e3779257e96b939dcd777967"
+_archive_sig_sum='1aa40e1aed1aec4b1a2685e69a029d70c1a78fe427db6f579dc7590ee1968858'
 _archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
 _archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
@@ -153,4 +153,3 @@ package() {
 }
 
 # vim: ft=sh syn=sh et
-sha256sums=('8b9afa4eb1aa977d1e483fad6276af6b3c1162d458e2d29e832af691027c238b')
