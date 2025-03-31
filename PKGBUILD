@@ -55,7 +55,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="0.0.0.0.0.1.1"
-_commit="804db20a076efa132d3c1e2f8af88fb8f3db3e38"
+_commit="4e95a96ef5d51ed42500d5ea30c36edd02dae348"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -106,7 +106,7 @@ _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum='c64e1fa115d0c30b1d2fe87db072304acf14fed21adbd5a45b3ce98e8b9191f9'
+_archive_sum='5a80a815e4935cea2355c7dcca737e85ce6be245a2283bd3aa9186296e1d4024'
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
 _archive_sig_sum='1aa40e1aed1aec4b1a2685e69a029d70c1a78fe427db6f579dc7590ee1968858'
