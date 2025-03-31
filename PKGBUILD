@@ -72,7 +72,10 @@ optdepends=(
 [[ "${_os}" == "Android" ]] && \
   optdepends+=(
   )
-makedepends=()
+makedepends=(
+  'make'
+  "${_py}-docutils"
+)
 checkdepends=(
   "shellcheck"
 )
@@ -150,6 +153,10 @@ package() {
     PREFIX="/usr" \
     DESTDIR="${pkgdir}" \
     install
+  install \
+    -vDm755 \
+    "COPYING" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
 }
 
 # vim: ft=sh syn=sh et
