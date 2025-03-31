@@ -39,14 +39,23 @@ fi
 _os="$( \
   uname \
     -o)"
+_docs="true"
 _py="python"
 _py2="python2"
 _offline="false"
 _git="false"
 _pkg=crash-bash
-pkgname="lib${_pkg}"
-pkgver="0.0.0.0.0.1"
-_commit="941f49e7c40dfd6a160a67c3c22df5eb43a08e4e"
+pkgbase="lib${_pkg}"
+pkgname=(
+  "${pkgbase}"
+)
+if [[ "${_docs}" == "true" ]]; then
+  pkgname+=(
+    "${pkgbase}-docs"
+  )
+fi
+pkgver="0.0.0.0.0.1.1"
+_commit="804db20a076efa132d3c1e2f8af88fb8f3db3e38"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -68,14 +77,19 @@ optdepends=(
   "${_py}-pygments: colorized output and syntax highlighting"
   "${_py2}-pygments: colorized output and syntax highlighting (Python 2)"
 )
-[[ "${_os}" != "GNU/Linux" ]] && \
-[[ "${_os}" == "Android" ]] && \
+if [[ "${_os}" != "GNU/Linux" ]] && \
+   [[ "${_os}" == "Android" ]]; then
   optdepends+=(
   )
+fi
 makedepends=(
   'make'
-  "${_py}-docutils"
 )
+if [[ "${_docs}" == "true" ]]; then
+  makedepends+=(
+    "${_py}-docutils"
+  )
+fi
 checkdepends=(
   "shellcheck"
 )
@@ -90,8 +104,9 @@ _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
+# Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum='5604a5c4544b2b028aa4416f2942eb09862a8b906898d49571852c6a31bcc9b3'
+_archive_sum='c64e1fa115d0c30b1d2fe87db072304acf14fed21adbd5a45b3ce98e8b9191f9'
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
 _archive_sig_sum='1aa40e1aed1aec4b1a2685e69a029d70c1a78fe427db6f579dc7590ee1968858'
@@ -146,17 +161,38 @@ check() {
     check
 }
 
-package() {
+package_libcrash-bash() {
   cd \
     "${_tarname}"
   make \
     PREFIX="/usr" \
     DESTDIR="${pkgdir}" \
-    install
+    "install-${_pkg}"
   install \
     -vDm755 \
     "COPYING" \
-    "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
+    "${pkgdir}/usr/share/licenses/${pkgbase}/COPYING"
+}
+
+package_libcrash-bash-docs() {
+  cd \
+    "${_tarname}"
+  make \
+    PREFIX="/usr" \
+    DESTDIR="${pkgdir}" \
+    install-doc
+  make \
+    PREFIX="/usr" \
+    DESTDIR="${pkgdir}" \
+    install-examples
+  make \
+    PREFIX="/usr" \
+    DESTDIR="${pkgdir}" \
+    install-man
+  install \
+    -vDm755 \
+    "COPYING" \
+    "${pkgdir}/usr/share/licenses/${pkgbase}-docs/COPYING"
 }
 
 # vim: ft=sh syn=sh et
