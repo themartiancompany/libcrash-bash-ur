@@ -151,7 +151,7 @@ jobs:
                 -y \
                 "git"
       - name:
-          Install pacman.
+          Install Pacman.
         run: |
           /entrypoint.sh \
             pkg \
@@ -165,6 +165,31 @@ jobs:
           /entrypoint.sh \
             pacman-key \
               --init
+      - name:
+          Install Python Pygments.
+        run: |
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "python-pygments"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            tree \
+              "${HOME}"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
       - name:
           Install Crash Bash Library.
         run: |
