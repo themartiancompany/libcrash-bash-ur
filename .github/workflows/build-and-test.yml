@@ -245,6 +245,7 @@ jobs:
             pkg \
               install \
                 -y \
+                binutils \
                 build-essential
       - name:
           Install EVM Chains Info.
@@ -290,27 +291,27 @@ jobs:
         # run: touch artifact
         run: |
           # Container info:
-          /entrypoint.sh \
-            echo \
-              "OS: $( \
-                uname \
-                  -o)"
-          /entrypoint.sh \
-            echo \
-              "Current position in container: $( \
-                 pwd)"
-          /entrypoint.sh \
-            echo \
-              "Root contents: $( \
-                 pwd)"
-          /entrypoint.sh \
-            echo \
-              "Root directory: ${HOME}"
-          /entrypoint.sh \
-            tree \
-              -L \
-                2 \
-              "/"
+          # /entrypoint.sh \
+          #   echo \
+          #     "OS: $( \
+          #       uname \
+          #         -o)"
+          # /entrypoint.sh \
+          #   echo \
+          #     "Current position in container: $( \
+          #        pwd)"
+          # /entrypoint.sh \
+          #   echo \
+          #     "Root contents: $( \
+          #        pwd)"
+          # /entrypoint.sh \
+          #   echo \
+          #     "Root directory: ${HOME}"
+          # /entrypoint.sh \
+          #   tree \
+          #     -L \
+          #       2 \
+          #     "/"
           # Install reallymakepkg with latest fur
           # /entrypoint.sh \
           #   mkdir \
