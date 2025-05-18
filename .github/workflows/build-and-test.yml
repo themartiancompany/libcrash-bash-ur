@@ -85,7 +85,7 @@ jobs:
           # the entrypoint.
           /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "termux-keyring" "tree"
           /entrypoint.sh pacman-key --init
-          /entrypoint.sh pacman -S termux-keyring
+          /entrypoint.sh pacman -Sy termux-keyring
           /entrypoint.sh pip install "meson"
       - name: build
         # run: touch artifact
