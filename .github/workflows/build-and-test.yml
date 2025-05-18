@@ -167,27 +167,19 @@ jobs:
               -rf \
               "${HOME}/fur"
           # Install latest fur
-          /entrypoint.sh \
-            git \
-              clone \
-                --branch="main" \
-                --single-branch \
-                --depth=1 \
-                "https://github.com/themartiancompany/fur" \
-                "${HOME}/fur-src"
-          # Install reallymakepkg with stable fur
-          /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "reallymakepkg"
+          # /entrypoint.sh \
+          #   git \
+          #     clone \
+          #       --branch="main" \
+          #       --single-branch \
+          #       --depth=1 \
+          #       "https://github.com/themartiancompany/fur" \
+          #       "${HOME}/fur-src"
           # Install reallymakepkg with latest fur
-          /entrypoint.sh \
-            mkdir \
-              -p \
-              "${HOME}/reallymakepkg-fur"
+          # /entrypoint.sh \
+          #   mkdir \
+          #     -p \
+          #     "${HOME}/reallymakepkg-fur"
           # /entrypoint.sh \
           #   bash \
           #     "${HOME}/fur-src/fur/fur" \
@@ -198,6 +190,18 @@ jobs:
           #       -o \
           #         "${HOME}/reallymakepkg-fur" \
           #       "reallymakepkg"
+
+          # Install reallymakepkg with stable fur
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "reallymakepkg"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
           /entrypoint.sh \
             tree \
               "${HOME}"
@@ -219,6 +223,7 @@ jobs:
               -v \
               -p \
                 "pacman" \
+              -d \
               "evm-chains-info"
           # /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
           # /entrypoint.sh tree "$(pwd)"
