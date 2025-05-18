@@ -111,12 +111,12 @@ jobs:
           mkdir -p "${HOME}"
           /entrypoint.sh git clone --branch="main" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "${HOME}/fur-src"
           # Install reallymakepkg with stable fur
-          # /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
+          /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
           # Install reallymakepkg with latest fur
           /entrypoint.sh mkdir -p "${HOME}/reallymakepkg-fur"
-          /entrypoint.sh bash ~/fur-src/fur/fur -v -p "pacman" -d -o "${HOME}/reallymakepkg-fur" "reallymakepkg"
+          # /entrypoint.sh bash ~/fur-src/fur/fur -v -p "pacman" -d -o "${HOME}/reallymakepkg-fur" "reallymakepkg"
           /entrypoint.sh tree .
-          /entrypoint.sh pacman -Udd --noconfirm "termux/any/"*".pkg.tar."*
+          # /entrypoint.sh pacman -Udd --noconfirm "termux/any/"*".pkg.tar."*
           /entrypoint.sh fur -v -p "pacman" "evm-chains-info"
           # /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
           # /entrypoint.sh tree "$(pwd)"
