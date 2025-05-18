@@ -81,8 +81,7 @@ jobs:
       - name:
           Set pkg command to use the packages-cf.termux.dev mirror.
         run:
-          /entrypoint.sh \
-            bash \
+          /entrypoint.sh bash \
               "ln" \
                 -sf \
                 "${PREFIX}/etc/termux/mirrors/default" \
