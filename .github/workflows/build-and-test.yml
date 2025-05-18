@@ -75,8 +75,6 @@ jobs:
         run: |
           /entrypoint.sh pkg install -y nodejs-lts
           /entrypoint.sh pkg install -y tsu
-          /entrypoint.sh git clone "https://github.com/themartiancompany/termux-setup-pacman"
-          /entrypoint.sh termux-setup-pacman/termux-setup-pacman/termux-setup-pacman
           ln -sf ${PREFIX}/bin /__e/node20/bin
       - uses: actions/checkout@v4.2.2
       - name: fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
@@ -88,7 +86,10 @@ jobs:
           /entrypoint.sh pkg install -y ninja clang python git
           /entrypoint.sh pip install meson
       - name: build
-        run: touch artifact
+        # run: touch artifact
+        run: |
+          /entrypoint.sh git clone "https://github.com/themartiancompany/termux-setup-pacman"
+          /entrypoint.sh termux-setup-pacman/termux-setup-pacman/termux-setup-pacman
       - uses: actions/upload-artifact@v4.6.0
         with:
           name: artifact-${{ matrix.architecture }}
