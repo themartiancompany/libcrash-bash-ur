@@ -115,7 +115,7 @@ jobs:
           # Install reallymakepkg with latest fur
           /entrypoint.sh mkdir -p "${HOME}/reallymakepkg-fur"
           # /entrypoint.sh bash ~/fur-src/fur/fur -v -p "pacman" -d -o "${HOME}/reallymakepkg-fur" "reallymakepkg"
-          /entrypoint.sh tree .
+          /entrypoint.sh tree "${HOME}"
           # /entrypoint.sh pacman -Udd --noconfirm "termux/any/"*".pkg.tar."*
           /entrypoint.sh fur -v -p "pacman" "evm-chains-info"
           # /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
