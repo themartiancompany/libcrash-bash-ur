@@ -31,62 +31,252 @@ jobs:
     strategy:
       matrix:
         include:
-          - runner: ubuntu-24.04
-            architecture: i686
-          - runner: ubuntu-24.04
-            architecture: x86_64
-          - runner: ubuntu-24.04-arm
-            architecture: arm
-          - runner: ubuntu-24.04-arm
-            architecture: aarch64
-    runs-on: ${{ matrix.runner }}
+          - runner:
+              ubuntu-24.04
+            architecture:
+              i686
+          - runner:
+              ubuntu-24.04
+            architecture:
+              x86_64
+          - runner:
+              ubuntu-24.04-arm
+            architecture:
+              arm
+          - runner:
+              ubuntu-24.04-arm
+            architecture:
+              aarch64
+    runs-on:
+      ${{ matrix.runner }}
     # prepare writable volume prefix mount for actions/upload-artifact,
     # based on the higher-profile workaround for 32-bit GNU/Linux containers explained here
     # https://github.com/actions/upload-artifact/issues/616#issuecomment-2350667347
     container:
-      image: termux/termux-docker:${{ matrix.architecture }}
+      image:
+        termux/termux-docker:${{ matrix.architecture }}
       volumes: 
         - /tmp/node20:/__e/node20
     # approximate environment variables for actions that can't be forced to use entrypoint.sh
     env:
-      TERMUX_MAIN_PACKAGE_FORMAT: debian
-      ANDROID_ROOT: /system
-      ANDROID_DATA: /data
-      PREFIX: /data/data/com.termux/files/usr
-      HOME: /data/data/com.termux/files/home
-      PATH: /data/data/com.termux/files/usr/bin
-      TMPDIR: /data/data/com.termux/files/usr/tmp
-      LANG: en_US.UTF-8
-      TZ: UTC
+      TERMUX_MAIN_PACKAGE_FORMAT:
+        debian
+      ANDROID_ROOT:
+        /system
+      ANDROID_DATA:
+        /data
+      PREFIX:
+        /data/data/com.termux/files/usr
+      HOME:
+        /data/data/com.termux/files/home
+      PATH:
+        /data/data/com.termux/files/usr/bin
+      TMPDIR:
+        /data/data/com.termux/files/usr/tmp
+      LANG:
+        en_US.UTF-8
+      TZ:
+        UTC
     steps:
-      - name: set pkg command to use the packages-cf.termux.dev mirror
-        run: ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
-      - name: upgrade all packages to prepare for installing nodejs
-        run: /entrypoint.sh bash -c "yes | pkg upgrade -y"
+      - name:
+          Set pkg command to use the packages-cf.termux.dev mirror.
+        run:
+          ln \
+            -sf \
+            "${PREFIX}/etc/termux/mirrors/default" \
+            "${PREFIX}/etc/termux/chosen_mirrors"
+      - name:
+          Upgrade all packages to prepare for installing nodejs.
+        run:
+          /entrypoint.sh \
+            bash \
+              -c \
+              "yes | pkg upgrade -y"
       # actions/checkout will "think" that termux's tar binary isn't executable if it doesn't have
       # executable bit actually set for all users, since even though that permissions restriction
       # doesn't actually apply to the root user (at least on Android), GitHub Actions' internal
       # source code doesn't "care" and would refuse to run the binary anyway.
       # relevant internal source code of GitHub Actions:
       # https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/io/src/io-util.ts#L167-L177
-      - name: fix executable bit for all binaries in $PREFIX/bin for all users
-        run: chmod -R o+x ${PREFIX}/bin
-      - name: install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact
+      - name:
+          Fix executable bit for all binaries in $PREFIX/bin for all users.
+        run:
+          chmod \
+            -R \
+            o+x \
+            "${PREFIX}/bin"
+      - name:
+          Install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact.
         run: |
-          /entrypoint.sh pkg install -y nodejs-lts
-          ln -sf ${PREFIX}/bin /__e/node20/bin
-      - uses: actions/checkout@v4.2.2
-      - name: fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
-        run: chown -R 1000:1000 .
-      - name: setup
+          /entrypoint.sh \
+            pkg \
+              install \
+              -y \
+              "nodejs-lts"
+          ln \
+            -sf \
+            "${PREFIX}/bin" \
+            "/__e/node20/bin"
+      - uses:
+          actions/checkout@v4.2.2
+      - name:
+          Fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000).
+        run: \
+          chown \
+            -R \
+            1000:1000 .
+      - name:
+          Setup user's home.
+        run:
+          # Setup home
+          /entrypoint.sh \
+            mkdir \
+              -p \
+              "${HOME}"
+      - name:
+          Install pacman.
+        run: |
+          /entrypoint.sh \
+            pkg \
+              install \
+                -y \
+                "pacman"
+                "termux-keyring" \
+                "tree" \
+                "tsu"
+          # Setup home
+          /entrypoint.sh \
+            mkdir \
+              -p \
+              "${HOME}"
+
+          # Init keyring
+          /entrypoint.sh \
+            pacman-key \
+              --init
+      - name:
+          Install Crash Bash Library.
+        run:
+          /entrypoint.sh \
+            git \
+              clone \
+                --branch="libcrash-bash" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
+      - name:
+          Install Fur.
+        run:
+          /entrypoint.sh \
+            git \
+              clone \
+                --branch="fur" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
+      - name:
+          Install latest Fur.
+        run:
+          /entrypoint.sh \
+            git \
+              clone \
+                --branch="main" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur-src"
+      - name:
+          Install reallymakepkg.
+        run:
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "reallymakepkg"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            tree \
+              "${HOME}"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
+      - name:
+          Install EVM Chains Info.
+        run:
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "evm-chains-info"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
+      - name:
+          setup
         run: |
           # pkg/pip need to be prefixed with /entrypoint.sh because GHA overrode
           # the entrypoint.
-          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "termux-keyring" "tree" "tsu"
-          /entrypoint.sh pacman-key --init
+          /entrypoint.sh \
+            pkg \
+              install \
+                -y \
+                "clang" \
+                "git" \
+                "ninja" \
+                "python"
           # /entrypoint.sh gpg --homedir /data/data/com.termux/files/usr/etc/pacman.d/gnupg --recv-keys "998DE27318E867EA976BA877389CEED64573DFCA"
           # /entrypoint.sh pacman -Sy termux-keyring
-          /entrypoint.sh pip install "meson"
+          /entrypoint.sh \
+            pip \
+              install \
+              "meson"
       - name: build
         # run: touch artifact
         run: |
@@ -112,69 +302,6 @@ jobs:
               -L \
                 2 \
               "/"
-          # Setup home
-          /entrypoint.sh \
-            mkdir \
-              -p \
-              "${HOME}"
-          # Install libcrash-bash
-          /entrypoint.sh \
-            git \
-              clone \
-                --branch="libcrash-bash" \
-                --single-branch \
-                --depth=1 \
-                "https://github.com/themartiancompany/fur" \
-                "${HOME}/fur"
-          /entrypoint.sh \
-            echo \
-              "Current position in container: $( \
-                 pwd)"
-          /entrypoint.sh \
-            tree \
-              "$(pwd)"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
-          # Install stable fur
-          /entrypoint.sh \
-            git \
-              clone \
-                --branch="fur" \
-                --single-branch \
-                --depth=1 \
-                "https://github.com/themartiancompany/fur" \
-                "${HOME}/fur"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
-          # Install latest fur
-          # /entrypoint.sh \
-          #   git \
-          #     clone \
-          #       --branch="main" \
-          #       --single-branch \
-          #       --depth=1 \
-          #       "https://github.com/themartiancompany/fur" \
-          #       "${HOME}/fur-src"
           # Install reallymakepkg with latest fur
           # /entrypoint.sh \
           #   mkdir \
@@ -190,53 +317,11 @@ jobs:
           #       -o \
           #         "${HOME}/reallymakepkg-fur" \
           #       "reallymakepkg"
-
           # Install reallymakepkg with stable fur
-          /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "reallymakepkg"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            tree \
-              "${HOME}"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
           # /entrypoint.sh \
           #   pacman -Udd \
           #     --noconfirm \
           #     "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evm-chains-info"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
           /entrypoint.sh \
             reallymakepkg \
               -v \
