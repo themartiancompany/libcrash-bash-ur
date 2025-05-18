@@ -83,7 +83,7 @@ jobs:
         run: |
           # pkg/pip need to be prefixed with /entrypoint.sh because GHA overrode
           # the entrypoint.
-          /entrypoint.sh pkg install -y ninja clang python git
+          /entrypoint.sh pkg install -y ninja clang pacman python git
           /entrypoint.sh pip install meson
       - name: build
         # run: touch artifact
