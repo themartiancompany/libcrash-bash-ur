@@ -89,10 +89,12 @@ jobs:
         # run: touch artifact
         run: |
           /entrypoint.sh tree -d 2 "/"
+          /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
+          /entrypoint.sh pacman -Udd "fur/arch/"*".pkg.tar."*
           /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
-          /entrypoint.sh make git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
-          /entrypoint.sh echo "$(pwd)"
-          /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
+          /entrypoint.sh echo "current position in container: $(pwd)"
+          /entrypoint.sh tree -d 2 "$(pwd)"
+          # /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
       - uses: actions/upload-artifact@v4.6.0
         with:
           name: artifact-${{ matrix.architecture }}
