@@ -162,6 +162,7 @@ check() {
 }
 
 package_libcrash-bash() {
+  ls
   cd \
     "${_tarname}"
   make \
