@@ -80,8 +80,11 @@ jobs:
     steps:
       - name:
           Set pkg command to use the packages-cf.termux.dev mirror.
-        run:
-          ln -sf "${PREFIX}/etc/termux/mirrors/default" "${PREFIX}/etc/termux/chosen_mirrors"
+        run: |
+          ln \
+            -sf \
+            "${PREFIX}/etc/termux/mirrors/default" \
+            "${PREFIX}/etc/termux/chosen_mirrors"
       - name:
           Upgrade all packages to prepare for installing nodejs.
         run:
@@ -109,9 +112,12 @@ jobs:
           chown -R 1000:1000 .
       - name:
           Setup user's home.
-        run:
+        run: |
           # Setup home
-          /entrypoint.sh mkdir -p "${HOME}"
+          /entrypoint.sh \
+            mkdir \
+              -p \
+              "${HOME}"
       - name:
           Install pacman.
         run: |
