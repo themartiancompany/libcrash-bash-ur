@@ -74,7 +74,6 @@ jobs:
       - name: install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact
         run: |
           /entrypoint.sh pkg install -y nodejs-lts
-          /entrypoint.sh pkg install -y tsu
           ln -sf ${PREFIX}/bin /__e/node20/bin
       - uses: actions/checkout@v4.2.2
       - name: fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000)
@@ -83,10 +82,10 @@ jobs:
         run: |
           # pkg/pip need to be prefixed with /entrypoint.sh because GHA overrode
           # the entrypoint.
-          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "termux-keyring" "tree"
+          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "termux-keyring" "tree" "tsu"
           /entrypoint.sh pacman-key --init
-          /entrypoint.sh gpg --homedir /data/data/com.termux/files/etc/pacman.d/gnupg --recv-keys "998DE27318E867EA976BA877389CEED64573DFCA"
-          /entrypoint.sh pacman -Sy termux-keyring
+          # /entrypoint.sh gpg --homedir /data/data/com.termux/files/etc/pacman.d/gnupg --recv-keys "998DE27318E867EA976BA877389CEED64573DFCA"
+          # /entrypoint.sh pacman -Sy termux-keyring
           /entrypoint.sh pip install "meson"
       - name: build
         # run: touch artifact
