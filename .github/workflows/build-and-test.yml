@@ -239,9 +239,11 @@ jobs:
       - name:
           Install build essentials.
         run: |
-          pkg \
-            -y \
-            build-essentials
+          /entrypoint.sh \
+            pkg \
+              install \
+                -y \
+                build-essentials
       - name:
           Install EVM Chains Info.
         run: |
