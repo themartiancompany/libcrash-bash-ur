@@ -439,6 +439,8 @@ jobs:
           /entrypoint.sh \
             reallymakepkg \
               -v \
+              -w \
+                "${HOME}/libcrash-bash-build" \
               -- \
               -df \
               --nocheck
