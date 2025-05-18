@@ -90,45 +90,137 @@ jobs:
       - name: build
         # run: touch artifact
         run: |
+          # Container info:
           /entrypoint.sh \
             echo \
               "OS: $( \
                 uname \
                   -o)"
-          /entrypoint.sh echo "Current position in container: $(pwd)"
-          /entrypoint.sh echo "Root contents: $(pwd)"
-          /entrypoint.sh echo "Root directory: ${HOME}"
-          /entrypoint.sh tree -L 2 "/"
+          /entrypoint.sh \
+            echo \
+              "Current position in container: $( \
+                 pwd)"
+          /entrypoint.sh \
+            echo \
+              "Root contents: $( \
+                 pwd)"
+          /entrypoint.sh \
+            echo \
+              "Root directory: ${HOME}"
+          /entrypoint.sh \
+            tree \
+              -L \
+                2 \
+              "/"
+          # Setup home
+          /entrypoint.sh \
+            mkdir \
+              -p \
+              "${HOME}"
           # Install libcrash-bash
-          /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "${HOME}/fur"
-          /entrypoint.sh echo "current position in container: $(pwd)"
-          /entrypoint.sh tree "$(pwd)"
-          /entrypoint.sh rm "${HOME}fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh rm -rf "fur"
+          /entrypoint.sh \
+            git \
+              clone \
+                --branch="libcrash-bash" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur"
+          /entrypoint.sh \
+            echo \
+              "Current position in container: $( \
+                 pwd)"
+          /entrypoint.sh \
+            tree \
+              "$(pwd)"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
           # Install stable fur
-          /entrypoint.sh git clone --branch="fur" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
-          /entrypoint.sh rm "fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh rm -rf "fur"
+          /entrypoint.sh \
+            git \
+              clone \
+                --branch="fur" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur"
+          /entrypoint.sh \
+            rm \
+              "fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
           # Install latest fur
-          mkdir -p "${HOME}"
-          /entrypoint.sh git clone --branch="main" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "${HOME}/fur-src"
+          /entrypoint.sh \
+            git \
+              clone \
+                --branch="main" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur-src"
           # Install reallymakepkg with stable fur
-          /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "reallymakepkg"
           # Install reallymakepkg with latest fur
-          /entrypoint.sh mkdir -p "${HOME}/reallymakepkg-fur"
-          # /entrypoint.sh bash ~/fur-src/fur/fur -v -p "pacman" -d -o "${HOME}/reallymakepkg-fur" "reallymakepkg"
-          /entrypoint.sh tree "${HOME}"
-          # /entrypoint.sh pacman -Udd --noconfirm "termux/any/"*".pkg.tar."*
-          /entrypoint.sh fur -v -p "pacman" "evm-chains-info"
+          /entrypoint.sh \
+            mkdir \
+              -p \
+              "${HOME}/reallymakepkg-fur"
+          # /entrypoint.sh \
+          #   bash \
+          #     "${HOME}/fur-src/fur/fur" \
+          #       -v \
+          #       -p \
+          #         "pacman" \
+          #       -d \
+          #       -o \
+          #         "${HOME}/reallymakepkg-fur" \
+          #       "reallymakepkg"
+          /entrypoint.sh \
+            tree \
+              "${HOME}"
+          # /entrypoint.sh \
+          #   pacman -Udd \
+          #     --noconfirm \
+          #     "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              "evm-chains-info"
           # /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
           # /entrypoint.sh tree "$(pwd)"
           # /entrypoint.sh rm "fur/termux/any/"*".pkg.tar."*".sig"
           # /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           # /entrypoint.sh rm -rf "fur"
-
-          /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
+          /entrypoint.sh \
+            git \
+              clone \
+                "https://github.com/themartiancompany/libcrash-bash-ur" \
+                "${HOME}/libcrash-bash"
           # /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
       - uses: actions/upload-artifact@v4.6.0
         with:
