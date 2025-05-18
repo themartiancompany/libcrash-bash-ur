@@ -106,7 +106,7 @@ jobs:
             "o+x" \
             "${PREFIX}/bin"
       - name:
-          Install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact.
+          Install bionic-libc NodeJS to force compatibility with actions/checkout and actions/upload-artifact.
         run: |
           /entrypoint.sh \
             pkg \
@@ -135,7 +135,15 @@ jobs:
               -p \
               "${HOME}"
       - name:
-          Install git.
+          Install Python.
+        run: |
+          /entrypoint.sh \
+            pkg \
+              install \
+                -y \
+                "git"
+      - name:
+          Install Git.
         run: |
           /entrypoint.sh \
             pkg \
