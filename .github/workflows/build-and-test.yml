@@ -201,6 +201,15 @@ jobs:
           /entrypoint.sh \
             tree \
               "${HOME}"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
           # /entrypoint.sh \
           #   pacman -Udd \
           #     --noconfirm \
