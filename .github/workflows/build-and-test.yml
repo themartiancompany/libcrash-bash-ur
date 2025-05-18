@@ -98,6 +98,7 @@ jobs:
           /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           /entrypoint.sh rm -rf "fur"
           /entrypoint.sh git clone --branch="fur" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
+          /entrypoint.sh rm "fur/termux/any/"*".pkg.tar."*".sig"
           /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
           # /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
