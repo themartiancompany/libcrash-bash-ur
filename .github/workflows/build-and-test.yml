@@ -135,6 +135,14 @@ jobs:
               -p \
               "${HOME}"
       - name:
+          Install git.
+        run: |
+          /entrypoint.sh \
+            pkg \
+              install \
+                -y \
+                "git"
+      - name:
           Install pacman.
         run: |
           /entrypoint.sh \
