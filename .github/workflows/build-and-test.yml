@@ -81,10 +81,11 @@ jobs:
       - name:
           Set pkg command to use the packages-cf.termux.dev mirror.
         run:
-          ln \
-            -sf \
-            "${PREFIX}/etc/termux/mirrors/default" \
-            "${PREFIX}/etc/termux/chosen_mirrors"
+          /entrypoint.sh \
+            ln \
+              -sf \
+              "${PREFIX}/etc/termux/mirrors/default" \
+              "${PREFIX}/etc/termux/chosen_mirrors"
       - name:
           Upgrade all packages to prepare for installing nodejs.
         run:
