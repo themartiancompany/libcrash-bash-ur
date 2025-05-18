@@ -167,7 +167,7 @@ package_libcrash-bash() {
   ls \
     "${srcdir}"
   cd \
-    "${_tarname}"
+    "${srcdir}/${_tarname}"
   make \
     PREFIX="/usr" \
     DESTDIR="${pkgdir}" \
