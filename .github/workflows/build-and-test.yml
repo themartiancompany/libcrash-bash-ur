@@ -248,6 +248,14 @@ jobs:
                 binutils \
                 build-essential
       - name:
+          Install make.
+        run: |
+          /entrypoint.sh \
+            pkg \
+              install \
+                -y \
+                "make"
+      - name:
           Install EVM Chains Info.
         run: |
           /entrypoint.sh \
