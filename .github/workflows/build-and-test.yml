@@ -333,10 +333,13 @@ jobs:
           #       "https://github.com/themartiancompany/libcrash-bash-ur" \
           #       "${HOME}/libcrash-bash"
           # /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
-      - uses: actions/upload-artifact@v4.6.0
+      - uses:
+          actions/upload-artifact@v4.6.0
         with:
-          name: artifact-${{ matrix.architecture }}
-          path: artifact
+          name:
+            artifact-${{ matrix.architecture }}
+          path:
+            artifact
 
   # This is the ideal way termux-docker would work with GHA.
   broken-ideal:
@@ -350,14 +353,24 @@ jobs:
       - name:
           setup
         run: |
-          pkg install -y "ninja" "clang" "pacman" "python" "git"
-          pip install meson
+          pkg \
+            install \
+              -y \
+              "ninja" \
+              "clang" \
+              "pacman" \
+              "python" \
+              "git"
+          pip \
+            install \
+            "meson"
       - uses:
           actions/checkout@v3.3.0
       - name:
           build
         run:
-          touch artifact
+          touch \
+            artifact
       - uses:
           actions/upload-artifact@v3.1.2
         if:
@@ -367,4 +380,3 @@ jobs:
             artifact
           path:
             artifact
-
