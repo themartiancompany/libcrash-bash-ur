@@ -239,13 +239,13 @@ jobs:
               -rf \
               "${HOME}/fur"
       - name:
-          Install build essentials.
+          Install build essential.
         run: |
           /entrypoint.sh \
             pkg \
               install \
                 -y \
-                build-essentials
+                build-essential
       - name:
           Install EVM Chains Info.
         run: |
