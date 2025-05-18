@@ -141,7 +141,7 @@ jobs:
             pkg \
               install \
                 -y \
-                "git"
+                "python"
       - name:
           Install Git.
         run: |
@@ -383,8 +383,7 @@ jobs:
               install \
                 -y \
                 "clang" \
-                "ninja" \
-                "python"
+                "ninja"
           # /entrypoint.sh gpg --homedir /data/data/com.termux/files/usr/etc/pacman.d/gnupg --recv-keys "998DE27318E867EA976BA877389CEED64573DFCA"
           # /entrypoint.sh pacman -Sy termux-keyring
           /entrypoint.sh \
@@ -473,7 +472,6 @@ jobs:
               -y \
               "ninja" \
               "clang" \
-              "python"
           pip \
             install \
             "meson"
