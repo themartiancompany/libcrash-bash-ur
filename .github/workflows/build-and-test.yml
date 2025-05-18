@@ -156,7 +156,7 @@ jobs:
                 "${HOME}/fur"
           /entrypoint.sh \
             rm \
-              "fur/termux/any/"*".pkg.tar."*".sig"
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
           /entrypoint.sh \
             pacman \
               -Udd \
