@@ -470,6 +470,11 @@ jobs:
               -- \
               -df \
               --nocheck
+          /entrypoint.sh \
+            echo \
+              "${HOME}"
+          find \
+            "$(pwd)"
           # /entrypoint.sh \
           #   git \
           #     clone \
