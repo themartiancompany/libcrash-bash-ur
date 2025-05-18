@@ -162,7 +162,10 @@ check() {
 }
 
 package_libcrash-bash() {
-  ls
+  msg \
+    "${srcdir}"
+  ls \
+    "${srcdir}"
   cd \
     "${_tarname}"
   make \
