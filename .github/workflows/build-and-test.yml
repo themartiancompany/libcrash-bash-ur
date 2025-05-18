@@ -83,12 +83,14 @@ jobs:
         run: |
           # pkg/pip need to be prefixed with /entrypoint.sh because GHA overrode
           # the entrypoint.
-          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python"
+          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "tree"
           /entrypoint.sh pip install "meson"
       - name: build
         # run: touch artifact
         run: |
+          /entrypoint.sh tree -d 2 "/"
           /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
+          /entrypoint.sh make git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
           /entrypoint.sh echo "$(pwd)"
           /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
       - uses: actions/upload-artifact@v4.6.0
