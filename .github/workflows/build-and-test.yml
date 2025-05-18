@@ -85,10 +85,7 @@ jobs:
       - name:
           Upgrade all packages to prepare for installing nodejs.
         run:
-          /entrypoint.sh \
-            bash \
-              -c \
-              "yes | pkg upgrade -y"
+          /entrypoint.sh bash -c "yes | pkg upgrade -y"
       # actions/checkout will "think" that termux's tar binary isn't executable if it doesn't have
       # executable bit actually set for all users, since even though that permissions restriction
       # doesn't actually apply to the root user (at least on Android), GitHub Actions' internal
@@ -98,64 +95,35 @@ jobs:
       - name:
           Fix executable bit for all binaries in $PREFIX/bin for all users.
         run:
-          chmod \
-            -R \
-            o+x \
-            "${PREFIX}/bin"
+          chmod -R o+x "${PREFIX}/bin"
       - name:
           Install bionic-libc nodejs to force compatibility with actions/checkout and actions/upload-artifact.
         run: |
-          /entrypoint.sh \
-            pkg \
-              install \
-              -y \
-              "nodejs-lts"
-          ln \
-            -sf \
-            "${PREFIX}/bin" \
-            "/__e/node20/bin"
+          /entrypoint.sh pkg install -y "nodejs-lts"
+          ln -sf "${PREFIX}/bin" "/__e/node20/bin"
       - uses:
           actions/checkout@v4.2.2
       - name:
           Fix permissions of repository after actions/checkout, which ran as root user, while entrypoint.sh activates system user (1000).
         run: \
-          chown \
-            -R \
-            1000:1000 .
+          chown -R 1000:1000 .
       - name:
           Setup user's home.
         run:
           # Setup home
-          /entrypoint.sh \
-            mkdir \
-              -p \
-              "${HOME}"
+          /entrypoint.sh mkdir -p "${HOME}"
       - name:
           Install pacman.
         run: |
-          /entrypoint.sh \
-            pkg \
-              install \
-                -y \
-                "pacman"
-                "termux-keyring" \
-                "tree" \
-                "tsu"
+          /entrypoint.sh pkg install -y "pacman" "termux-keyring" "tree" "tsu"
           # Setup home
-          /entrypoint.sh \
-            mkdir \
-              -p \
-              "${HOME}"
-
+          /entrypoint.sh mkdir -p "${HOME}"
           # Init keyring
-          /entrypoint.sh \
-            pacman-key \
-              --init
+          /entrypoint.sh pacman-key --init
       - name:
           Install Crash Bash Library.
         run:
-          /entrypoint.sh \
-            git \
+          /entrypoint.sh git \
               clone \
                 --branch="libcrash-bash" \
                 --single-branch \
