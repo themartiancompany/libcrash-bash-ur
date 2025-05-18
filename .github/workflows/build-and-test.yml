@@ -83,9 +83,9 @@ jobs:
         run: |
           # pkg/pip need to be prefixed with /entrypoint.sh because GHA overrode
           # the entrypoint.
-          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "termux-keyring" "tree"
+          /entrypoint.sh pkg install -y "clang" "git" "ninja" "pacman" "python" "tree"
           /entrypoint.sh pacman-key --init
-          /entrypoint.sh pacman -Sy
+          /entrypoint.sh pacman -S termux-keyring
           /entrypoint.sh pip install "meson"
       - name: build
         # run: touch artifact
