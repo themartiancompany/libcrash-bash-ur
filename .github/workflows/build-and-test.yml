@@ -108,11 +108,12 @@ jobs:
           /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           /entrypoint.sh rm -rf "fur"
           # Install latest fur
+          mkdir -p "${HOME}"
           /entrypoint.sh git clone --branch="main" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "${HOME}/fur-src"
           # Install reallymakepkg with stable fur
           # /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
           # Install reallymakepkg with latest fur
-          /entrypoint.sh mkdir "${HOME}/reallymakepkg-fur"
+          /entrypoint.sh mkdir -p "${HOME}/reallymakepkg-fur"
           /entrypoint.sh bash ~/fur-src/fur/fur -v -p "pacman" -d -o "${HOME}/reallymakepkg-fur" "reallymakepkg"
           /entrypoint.sh tree .
           /entrypoint.sh pacman -Udd --noconfirm "termux/any/"*".pkg.tar."*
