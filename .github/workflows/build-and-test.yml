@@ -88,8 +88,8 @@ jobs:
       - name: build
         # run: touch artifact
         run: |
-          /entrypoint.sh git clone "https://github.com/themartiancompany/termux-setup-pacman"
-          /entrypoint.sh bash "termux-setup-pacman/termux-setup-pacman/termux-setup-pacman"
+          /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
+          /entrypoint.sh cd "libcrash-bash" && makepkg
       - uses: actions/upload-artifact@v4.6.0
         with:
           name: artifact-${{ matrix.architecture }}
