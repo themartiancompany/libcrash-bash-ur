@@ -270,6 +270,50 @@ jobs:
               -rf \
               "${HOME}/fur"
       - name:
+          Install EVM Chains Explorers.
+        run: |
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "evm-chains-explorers"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
+      - name:
+          Install LibEVM.
+        run: |
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "libevm"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
+      - name:
           setup
         run: |
           # pkg/pip need to be prefixed with /entrypoint.sh because GHA overrode
