@@ -91,7 +91,7 @@ jobs:
           /entrypoint.sh tree -L 2 "/"
           /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
           /entrypoint.sh echo "current position in container: $(pwd)"
-          /entrypoint.sh tree -L 2 "$(pwd)"
+          /entrypoint.sh tree "$(pwd)"
           /entrypoint.sh pacman -Udd "fur/arch/"*".pkg.tar."*
           /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
           # /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
