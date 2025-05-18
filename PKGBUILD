@@ -161,6 +161,15 @@ check() {
     check
 }
 
+prepare() {
+  if [[ ! -d "${srcdir}/${_tarname}" ]]; then
+    cd \
+      "${srcdir}"
+    unzip \
+      "${srcdir}/${_tarname}.zip"
+  fi
+}
+
 package_libcrash-bash() {
   msg \
     "${srcdir}"
