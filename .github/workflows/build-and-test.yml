@@ -272,13 +272,14 @@ jobs:
               -rf \
               "${HOME}/fur"
       - name:
-          Install 'Build essential' ahah.
+          Install 'build essential' ahah.
         run: |
           /entrypoint.sh \
             pkg \
               install \
                 -y \
                 binutils \
+                bsdtar \
                 file \
                 build-essential
       - name:
