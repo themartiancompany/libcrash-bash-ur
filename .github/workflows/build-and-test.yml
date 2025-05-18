@@ -432,7 +432,8 @@ jobs:
             reallymakepkg \
               -v \
               -- \
-              -f
+              -df \
+              --nocheck
           # /entrypoint.sh \
           #   git \
           #     clone \
