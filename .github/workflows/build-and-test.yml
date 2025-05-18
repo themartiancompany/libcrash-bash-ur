@@ -86,7 +86,7 @@ jobs:
             "${PREFIX}/etc/termux/mirrors/default" \
             "${PREFIX}/etc/termux/chosen_mirrors"
       - name:
-          Upgrade all packages to prepare for installing nodejs.
+          Upgrade Termux debian environment.
         run: |
           /entrypoint.sh \
             bash \
@@ -99,7 +99,7 @@ jobs:
       # relevant internal source code of GitHub Actions:
       # https://github.com/actions/toolkit/blob/930c89072712a3aac52d74b23338f00bb0cfcb24/packages/io/src/io-util.ts#L167-L177
       - name:
-          Fix executable bit for all binaries in $PREFIX/bin for all users.
+          Fix executable bit for all binaries in "${PREFIX}/bin" for all users.
         run: |
           chmod \
             -R \
@@ -154,7 +154,9 @@ jobs:
                 "tree" \
                 "tsu"
           # Init keyring
-          /entrypoint.sh pacman-key --init
+          /entrypoint.sh \
+            pacman-key \
+              --init
       - name:
           Install Crash Bash Library.
         run: |
