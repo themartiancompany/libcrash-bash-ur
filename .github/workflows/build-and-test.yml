@@ -90,7 +90,7 @@ jobs:
         run: |
           /entrypoint.sh git clone "https://github.com/themartiancompany/libcrash-bash-ur" "libcrash-bash"
           /entrypoint.sh echo "$(pwd)"
-          /entrypoint.sh cd "libcrash-bash" && makepkg
+          /entrypoint.sh cd "$(pwd)/libcrash-bash" && makepkg
       - uses: actions/upload-artifact@v4.6.0
         with:
           name: artifact-${{ matrix.architecture }}
