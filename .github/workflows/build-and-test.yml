@@ -93,6 +93,7 @@ jobs:
           /entrypoint.sh echo "OS: $(uname -o)"
           /entrypoint.sh echo "Current position in container: $(pwd)"
           /entrypoint.sh echo "Root contents: $(pwd)"
+          /entrypoint.sh echo "Root directory: ${HOME}"
           /entrypoint.sh tree -L 2 "/"
           # Install libcrash-bash
           /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
@@ -101,12 +102,16 @@ jobs:
           /entrypoint.sh rm "fur/termux/any/"*".pkg.tar."*".sig"
           /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           /entrypoint.sh rm -rf "fur"
-          # Install fur
+          # Install stable fur
           /entrypoint.sh git clone --branch="fur" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
           /entrypoint.sh rm "fur/termux/any/"*".pkg.tar."*".sig"
           /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           /entrypoint.sh rm -rf "fur"
-          # Install reallymakepkg
+          # Install latest fur
+          /entrypoint.sh git clone --branch="main" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "${HOME}/fur"
+          # Install reallymakepkg with stable fur
+          /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
+          # Install reallymakepkg with latest fur
           /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
           /entrypoint.sh tree .
           /entrypoint.sh pacman -Udd --noconfirm ""*".pkg.tar."*
