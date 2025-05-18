@@ -237,6 +237,10 @@ jobs:
             rm \
               -rf \
               "${HOME}/fur"
+          reallymakepkg \
+            -v \
+            -- \
+            -f
           # /entrypoint.sh \
           #   git \
           #     clone \
