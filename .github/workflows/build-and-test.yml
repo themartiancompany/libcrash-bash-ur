@@ -247,13 +247,14 @@ jobs:
               -rf \
               "${HOME}/fur"
       - name:
-          Install build essential.
+          Install 'Build essential' ahah.
         run: |
           /entrypoint.sh \
             pkg \
               install \
                 -y \
                 binutils \
+                file \
                 build-essential
       - name:
           Install make.
