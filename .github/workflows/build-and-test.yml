@@ -105,7 +105,8 @@ jobs:
           /entrypoint.sh pacman -Udd --noconfirm "fur/termux/any/"*".pkg.tar."*
           /entrypoint.sh rm -rf "fur"
           # Install reallymakepkg
-          /entrypoint.sh fur -v -p "pacman" "reallymakepkg"
+          /entrypoint.sh fur -v -p "pacman" -d "reallymakepkg"
+          /entrypoint.sh pacman -Udd --noconfirm ""*".pkg.tar."*
           /entrypoint.sh fur -v -p "pacman" "evm-chains-info"
           # /entrypoint.sh git clone --branch="libcrash-bash" --single-branch --depth=1 "https://github.com/themartiancompany/fur" "fur"
           # /entrypoint.sh echo "current position in container: $(pwd)"
