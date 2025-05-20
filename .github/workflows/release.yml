@@ -1199,13 +1199,17 @@ jobs:
       - name:
           Installs build dependencies.
         run: |
-          pacman \
-            -S \
-            --noconfirm \
+          export \
+            _pkgs=(
             $(_evmfs="false" \
               recipe-get \
                 "PKGBUILD" \
                 "makedepends")
+          )
+          pacman \
+            -S \
+            --noconfirm \
+            "${_pkgs[*]}"
       - name:
           Builds the Arch package.
         run: |
