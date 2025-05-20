@@ -1371,13 +1371,20 @@ jobs:
                 -iname \
                   "*.pkg.tar.*")
       - name:
+          Gets recipe-get.
+        run: |
+          git \
+            clone \
+              "https://github.com/themartiancompany/reallymakepkg"
+      - name:
           version
         run: |
           echo \
             "::set-output name=version::$( \
-            recipe-get \
-              "PKGBUILD" \
-              "pkgver")"
+            bash \
+              "reallymakepkg/reallymakepkg/recipe-get" \
+                "PKGBUILD" \
+                "pkgver")"
         id:
           version
       - name:

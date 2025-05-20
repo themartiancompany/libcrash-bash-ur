@@ -1331,7 +1331,7 @@ jobs:
       - uses:
           actions/checkout@v3
       - name:
-          Get recipe-get.
+          Gets recipe-get.
         run: |
           git \
             clone \
@@ -1361,7 +1361,7 @@ jobs:
           echo \
             "::set-output name=version::$( \
             bash \
-              reallymakepkg/reallymakepkg/recipe-get \
+              "reallymakepkg/reallymakepkg/recipe-get" \
                 "PKGBUILD" \
                 "pkgver")"
         id:
