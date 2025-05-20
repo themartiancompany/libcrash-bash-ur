@@ -1331,6 +1331,12 @@ jobs:
       - uses:
           actions/checkout@v3
       - name:
+          Get recipe-get.
+        run: |
+          git \
+            clone \
+              "https://github.com/themartiancompany/reallymakepkg"
+      - name:
           Builds the package.
         run: |
           dos2unix \
@@ -1354,9 +1360,10 @@ jobs:
         run: |
           echo \
             "::set-output name=version::$( \
-            recipe-get \
-              "PKGBUILD" \
-              "pkgver")"
+            bash \
+              reallymakepkg/reallymakepkg/recipe-get \
+                "PKGBUILD" \
+                "pkgver")"
         id:
           version
       - uses:
