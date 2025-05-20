@@ -1416,7 +1416,7 @@ jobs:
           asset_path:
             libcrash-bash-${{ steps.version.outputs.version }}-1-any.pkg.tar.xz
           asset_name:
-            libcrash-bash-${{ steps.version.outputs.version }}-1-any.pkg.tar.xz
+            dogeos-windows-libcrash-bash-${{ steps.version.outputs.version }}-1-any.pkg.tar.xz
           asset_content_type:
             application/gzip
 
