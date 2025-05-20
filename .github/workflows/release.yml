@@ -311,7 +311,7 @@ jobs:
               -rf \
               "${HOME}/fur"
       - name:
-          Installs reallymakepkg.
+          Installs Reallymakepkg.
         run: |
           /entrypoint.sh \
             fur \
@@ -800,6 +800,7 @@ jobs:
             "git" \
             "jq" \
             "python" \
+            "python-docutils" \
             "tree"
       - uses:
           actions/checkout@v4.2.2

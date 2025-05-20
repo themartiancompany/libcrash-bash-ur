@@ -322,31 +322,31 @@ jobs:
             rm \
               -rf \
               "${HOME}/fur"
-      # - name:
-      #     Installs reallymakepkg.
-      #   run: |
-      #     /entrypoint.sh \
-      #       fur \
-      #         -v \
-      #         -p \
-      #           "pacman" \
-      #         -d \
-      #         "reallymakepkg"
-      #     /entrypoint.sh \
-      #       rm \
-      #         "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-      #     /entrypoint.sh \
-      #       tree \
-      #         "${HOME}"
-      #     /entrypoint.sh \
-      #       pacman \
-      #         -Udd \
-      #         --noconfirm \
-      #         "${HOME}/fur/termux/any/"*".pkg.tar."*
-      #     /entrypoint.sh \
-      #       rm \
-      #         -rf \
-      #         "${HOME}/fur"
+      - name:
+          Installs reallymakepkg.
+        run: |
+          /entrypoint.sh \
+            fur \
+              -v \
+              -p \
+                "pacman" \
+              -d \
+              "reallymakepkg"
+          /entrypoint.sh \
+            rm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
+          /entrypoint.sh \
+            tree \
+              "${HOME}"
+          /entrypoint.sh \
+            pacman \
+              -Udd \
+              --noconfirm \
+              "${HOME}/fur/termux/any/"*".pkg.tar."*
+          /entrypoint.sh \
+            rm \
+              -rf \
+              "${HOME}/fur"
       - name:
           Installs 'build essential' ahah.
         run: |
