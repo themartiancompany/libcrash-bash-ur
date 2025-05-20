@@ -1209,7 +1209,7 @@ jobs:
           pacman \
             -S \
             --noconfirm \
-            "${_pkgs[*]}"
+            "${_pkgs[@]}"
       - name:
           Builds the Arch package.
         run: |

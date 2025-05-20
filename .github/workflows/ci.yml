@@ -1202,7 +1202,7 @@ jobs:
             -S \
               --noconfirm \
               jq \
-              "${_pkgs[*]}"
+              "${_pkgs[@]}"
       - name:
           Builds the package.
         run: |
