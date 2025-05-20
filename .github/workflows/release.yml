@@ -1162,7 +1162,8 @@ jobs:
           pacman \
             -S \
               --noconfirm \
-            $(recipe-get \
+            $(_evmfs="false" \
+              recipe-get \
                 "PKGBUILD" \
                 "makedepends")
       - name:
