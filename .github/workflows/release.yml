@@ -694,7 +694,9 @@ jobs:
             pacman \
               -Rdd \
               --noconfirm \
-              libcrash-bash
+              libcrash-bash \
+              libcrash-bash-docs || \
+              true
           /entrypoint.sh \
             pacman \
               -Udd \
@@ -1228,7 +1230,9 @@ jobs:
           pacman \
             -Rdd \
             --noconfirm \
-            libcrash-bash
+            libcrash-bash \
+            libcrash-bash-docs || \
+            true
           pacman \
             -Udd \
             --noconfirm \
