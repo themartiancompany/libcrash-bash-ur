@@ -1096,21 +1096,21 @@ jobs:
             -rf \
             "${HOME}/fur"
       - name:
-        Installs EVMFS.
+          Installs EVMFS.
         run: |
           fur \
-          -v \
-          -d \
-          "evmfs"
+            -v \
+            -d \
+            "evmfs"
           rm \
-          "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
-          -Udd \
-          --noconfirm \
-          "${HOME}/fur/arch/any/"*".pkg.tar."*
+            -Udd \
+            --noconfirm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*
           rm \
-          -rf \
-          "${HOME}/fur"
+            -rf \
+            "${HOME}/fur"
           # - name:
           #     Installs EVM Contracts Source Index.
           #   run: |
