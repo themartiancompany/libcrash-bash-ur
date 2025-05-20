@@ -644,9 +644,14 @@ jobs:
       - name:
           Builds the package.
         run: |
-          TERMUX_VERSION="50" \
           /entrypoint.sh \
-            makepkg \
+            TERMUX_VERSION="50" \
+            _evmfs="false" \
+            reallymakepkg \
+              -v \
+              -w \
+                "${HOME}/libcrash-bash-build" \
+              -- \
               -df \
               --nocheck
           /entrypoint.sh \
@@ -1200,7 +1205,7 @@ jobs:
         run: |
           su \
             -c \
-              "cd '$(pwd)' && makepkg -df --nocheck" - \
+              "cd '$(pwd)' && _evmfs="false" makepkg -df --nocheck" - \
             "user"
       - name:
           Installs the package.
@@ -1330,6 +1335,7 @@ jobs:
         run: |
           dos2unix \
             "PKGBUILD"
+          _evmfs="false" \
           makepkg \
             -df \
             --nocheck
