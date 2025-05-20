@@ -692,6 +692,11 @@ jobs:
         run: |
           /entrypoint.sh \
             pacman \
+              -Rdd \
+              --noconfirm \
+              libcrash-bash
+          /entrypoint.sh \
+            pacman \
               -Udd \
               --noconfirm \
               $(find \
