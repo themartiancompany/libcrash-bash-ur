@@ -1357,9 +1357,14 @@ jobs:
           dos2unix \
             "PKGBUILD"
           _evmfs="false" \
+          PKGEXT='.pkg.tar.xz' \
           makepkg \
             -df \
             --nocheck
+          find \
+            "$(pwd)" \
+            -iname \
+              "*.pkg.tar.*"
       - name:
           Installs the package.
         run: |
