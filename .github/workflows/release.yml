@@ -1092,124 +1092,124 @@ jobs:
             -Udd \
             --noconfirm \
             "${HOME}/fur/termux/any/"*".pkg.tar."*
-          rm \
+            rm \
             -rf \
             "${HOME}/fur"
       - name:
-          Installs EVMFS.
+        Installs EVMFS.
         run: |
           fur \
-            -v \
-            -d \
-            "evmfs"
+          -v \
+          -d \
+          "evmfs"
           rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          -Udd \
+          --noconfirm \
+          "${HOME}/fur/arch/any/"*".pkg.tar."*
           rm \
-            -rf \
-            "${HOME}/fur"
-      # - name:
-      #     Installs EVM Contracts Source Index.
-      #   run: |
-      #     fur \
-      #       -v \
-      #       -d \
-      #       "evm-contracts-source-index-git"
-      #     rm \
-      #       "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-      #     pacman \
-      #       -Udd \
-      #       --noconfirm \
-      #       "${HOME}/fur/arch/any/"*".pkg.tar."*
-      #     rm \
-      #       -rf \
-      #       "${HOME}/fur"
+          -rf \
+          "${HOME}/fur"
+          # - name:
+          #     Installs EVM Contracts Source Index.
+          #   run: |
+          #     fur \
+          #       -v \
+          #       -d \
+          #       "evm-contracts-source-index-git"
+          #     rm \
+          #       "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          #     pacman \
+          #       -Udd \
+          #       --noconfirm \
+          #       "${HOME}/fur/arch/any/"*".pkg.tar."*
+          #     rm \
+          #       -rf \
+          #       "${HOME}/fur"
       - name:
-          Installs Aspe.
+        Installs Aspe.
         run: |
           fur \
-            -v \
-            -d \
-            "aspe"
+          -v \
+          -d \
+          "aspe"
           rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          -Udd \
+          --noconfirm \
+          "${HOME}/fur/arch/any/"*".pkg.tar."*
           rm \
-            -rf \
-            "${HOME}/fur"
+          -rf \
+          "${HOME}/fur"
       - name:
-          Installs Lur.
+        Installs Lur.
         run: |
           fur \
-            -v \
-            -d \
-            "lur"
+          -v \
+          -d \
+          "lur"
           rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          -Udd \
+          --noconfirm \
+          "${HOME}/fur/arch/any/"*".pkg.tar."*
           rm \
-            -rf \
-            "${HOME}/fur"
+          -rf \
+          "${HOME}/fur"
       - name:
-          Installs Ur.
+        Installs Ur.
         run: |
           fur \
-            -v \
-            -d \
-            "ur"
+          -v \
+          -d \
+          "ur"
           rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          -Udd \
+          --noconfirm \
+          "${HOME}/fur/arch/any/"*".pkg.tar."*
           rm \
-            -rf \
-            "${HOME}/fur"
+          -rf \
+          "${HOME}/fur"
       - name:
-          Setups an user. This is something which exists on the Ur for a reason.
+        Setups an user. This is something which exists on the Ur for a reason.
         run: |
           mkdir \
-            -p \
-            "/home/user/lur"
+          -p \
+          "/home/user/lur"
           useradd \
-            user
+          user
           chmod \
-            700 \
-            "/home/user"
+          700 \
+          "/home/user"
           chown \
-            -R \
-            "user:user" \
-            "/home/user"
-          chown \
-            -R \
-            "user:user" \
-            "$(pwd)"
+          -R \
+          "user:user" \
+                     "/home/user"
+                     chown \
+                     -R \
+                     "user:user" \
+                                "$(pwd)"
       - name:
-          Installs build dependencies.
+        Installs build dependencies.
         run: |
           pacman \
-            -S \
-              --noconfirm \
-            $(_evmfs="false" \
-              recipe-get \
-                "PKGBUILD" \
-                "makedepends")
+          -S \
+          --noconfirm \
+          $(_evmfs="false" \
+                          recipe-get \
+                          "PKGBUILD" \
+                                    "makedepends")
       - name:
-          Builds the Arch package.
+        Builds the Arch package.
         run: |
           su \
-            -c \
-              "cd $(pwd) && reallymakepkg -v -w '/home/user/libcrash-bash-build' -- -df --nocheck" - \
+          -c \
+          "cd $(pwd) && reallymakepkg -v -w '/home/user/libcrash-bash-build' -- -df --nocheck" - \
             "user"
       - name:
           Installs the package.
@@ -1350,6 +1350,7 @@ jobs:
         run: |
           dos2unix \
             "PKGBUILD"
+          _evmfs="false" \
           makepkg \
             -df \
             --nocheck
