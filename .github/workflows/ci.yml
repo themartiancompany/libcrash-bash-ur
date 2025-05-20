@@ -888,24 +888,22 @@ jobs:
           rm \
             -rf \
             "${HOME}/fur"
-      # - name:
-      #     Installs Reallymakepkg.
-      #   run: |
-      #     fur \
-      #       -v \
-      #       -d \
-      #       "reallymakepkg"
-      #     rm \
-      #       "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-      #     tree \
-      #       "${HOME}"
-      #     pacman \
-      #       -Udd \
-      #       --noconfirm \
-      #       "${HOME}/fur/arch/any/"*".pkg.tar."*
-      #     rm \
-      #       -rf \
-      #       "${HOME}/fur"
+      - name:
+          Installs Reallymakepkg.
+        run: |
+          fur \
+            -v \
+            -d \
+            "reallymakepkg"
+          rm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          pacman \
+            -Udd \
+            --noconfirm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          rm \
+            -rf \
+            "${HOME}/fur"
       - name:
           Installs Node Run.
         run: |
@@ -1197,9 +1195,10 @@ jobs:
             -S \
               --noconfirm \
               jq
-      #       $(recipe-get \
-      #           "PKGBUILD" \
-      #           "makedepends")
+              $(_evmfs="false" \
+                recipe-get \
+                  "PKGBUILD" \
+                  "makedepends")
       - name:
           Builds the package.
         run: |
