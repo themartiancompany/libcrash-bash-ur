@@ -672,6 +672,7 @@ jobs:
           #         "${HOME}/reallymakepkg-fur" \
           #       "reallymakepkg"
           /entrypoint.sh \
+            _evmfs="false" \
             reallymakepkg \
               -v \
               -w \
@@ -1210,7 +1211,7 @@ jobs:
         run: |
           su \
             -c \
-              "cd $(pwd) && reallymakepkg -v -w '/home/user/libcrash-bash-build' -- -df --nocheck" - \
+              "cd $(pwd) && _evmfs="false" reallymakepkg -v -w '/home/user/libcrash-bash-build' -- -df --nocheck" - \
             "user"
       - name:
           Installs the package.
