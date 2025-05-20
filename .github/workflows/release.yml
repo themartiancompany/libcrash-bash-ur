@@ -81,6 +81,8 @@ jobs:
     env:
       TERMUX_MAIN_PACKAGE_FORMAT:
         debian
+      TERMUX_VERSION:
+          50
       ANDROID_ROOT:
         /system
       ANDROID_DATA:
