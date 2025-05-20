@@ -1377,6 +1377,8 @@ jobs:
       - name:
           Installs the package.
         run: |
+          echo \
+            "env position: $(command -v env)"
           pacman \
             -Rdd \
             --noconfirm \
@@ -1385,6 +1387,7 @@ jobs:
           pacman \
             -Udd \
             --noconfirm \
+            --overwrite="*" \
             $(find \
                 "$(pwd)" \
                 -iname \
