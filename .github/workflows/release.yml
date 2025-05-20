@@ -675,6 +675,7 @@ jobs:
           #       "reallymakepkg"
           /entrypoint.sh \
             _evmfs="false" \
+            TERMUX_VERSION=50 \
             reallymakepkg \
               -v \
               -w \
