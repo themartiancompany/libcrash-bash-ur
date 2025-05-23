@@ -879,8 +879,8 @@ jobs:
           Installs Inteppacman.
         run: |
           chmod \
-            +x \
-            "${HOME}/fur-src/fur/fur
+            "u+x" \
+            "${HOME}/fur-src/fur/fur"
           "${HOME}/fur-src/fur/fur" \
             -v \
             -D \
