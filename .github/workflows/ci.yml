@@ -878,34 +878,16 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          # bash \
-          #   "${HOME}/fur-src/fur/fur" \
-          #   -v \
-          #   -h
           bash \
-            "${HOME}/fur-src/fur/fur" -v -D "n" "inteppacman"
-            # -p \
-            #   "pacman" \
-            # -D \
-            #   "y" \
-            # "inteppacman"
-          # fur \
-          #   -v \
-          #   -p \
-          #     "pacman" \
-          #   -d \
-          #   "inteppacman"
-          # rm \
-          #   "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          # tree \
-          #   "${HOME}"
-          # pacman \
-          #   -Udd \
-          #   --noconfirm \
-          #   "${HOME}/fur/arch/any/"*".pkg.tar."*
-          # rm \
-          #   -rf \
-          #   "${HOME}/fur"
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -D \
+                "n" \
+              "inteppacman" > \
+            "log" || \
+            true
+          cat \
+            "log"
       - name:
           Installs Reallymakepkg.
         run: |
