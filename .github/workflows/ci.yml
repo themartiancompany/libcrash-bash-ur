@@ -854,7 +854,7 @@ jobs:
         run: |
           git \
             clone \
-              --branch="fur-git" \
+              --branch="fur" \
               --single-branch \
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
