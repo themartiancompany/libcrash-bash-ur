@@ -859,6 +859,13 @@ jobs:
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
               "${HOME}/fur"
+          git \
+            clone \
+              --branch="main" \
+              --single-branch \
+              --depth=1 \
+              "https://github.com/themartiancompany/fur" \
+              "${HOME}/fur-src"
           rm \
             "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
@@ -871,7 +878,7 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          fur \
+          bash ~/fur/fur/fur \
             -v \
             -p \
               "pacman" \
