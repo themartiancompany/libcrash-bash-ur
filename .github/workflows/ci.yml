@@ -725,7 +725,7 @@ jobs:
               "${HOME}/fur"
           git \
             clone \
-              --branch="main" \
+              --branch="stable" \
               --single-branch \
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
@@ -742,36 +742,14 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          echo \
-            "$(id)"
-          fur \
-            -v \
-            -d \
-            "inteppacman" 2>1
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
-          # fur \
-          #   -v \
-          #   -D \
-          #     "n" \
-          #   -p \
-          #     "pacman" \
-          #   "inteppacman" > \
-          #   "${HOME}/log"
-          # echo \
-          #   "Inteppacman install log at '${HOME}/log':"
-          # cat \
-          #   "${HOME}/log"
-          inteppacman \
-            -v \
-            -h
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "inteppacman"
       - name:
           Installs Reallymakepkg.
         run: |
