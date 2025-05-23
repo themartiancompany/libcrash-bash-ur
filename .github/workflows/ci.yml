@@ -875,19 +875,26 @@ jobs:
             -v \
             -p \
               "pacman" \
-            -d \
+            -D \
+              "y" \
             "inteppacman"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          tree \
-            "${HOME}"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          # fur \
+          #   -v \
+          #   -p \
+          #     "pacman" \
+          #   -d \
+          #   "inteppacman"
+          # rm \
+          #   "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          # tree \
+          #   "${HOME}"
+          # pacman \
+          #   -Udd \
+          #   --noconfirm \
+          #   "${HOME}/fur/arch/any/"*".pkg.tar."*
+          # rm \
+          #   -rf \
+          #   "${HOME}/fur"
       - name:
           Installs Reallymakepkg.
         run: |
