@@ -878,14 +878,17 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
+          # bash \
+          #   "${HOME}/fur-src/fur/fur" \
+          #   -v \
+          #   -h
           bash \
-            "${HOME}/fur-src/fur/fur" \
-            -v \
-            -p \
-              "pacman" \
-            -D \
-              "y" \
-            "inteppacman" 2>1
+            "${HOME}/fur-src/fur/fur" -v -D "n" -- "inteppacman"
+            # -p \
+            #   "pacman" \
+            # -D \
+            #   "y" \
+            # "inteppacman"
           # fur \
           #   -v \
           #   -p \
