@@ -881,6 +881,10 @@ jobs:
           bash \
             "${HOME}/fur-src/fur/fur" \
             -v \
+            -h
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+            -v \
             -p \
               "pacman" \
             -D \
