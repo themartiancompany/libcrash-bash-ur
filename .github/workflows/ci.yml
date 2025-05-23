@@ -989,6 +989,8 @@ jobs:
               cd
                 \"$(pwd)\" "&&"
               _evmfs="false"
+              echo \
+                "command: '${_cmd[*]}'"
               makepkg
                 -df
                 --nocheck
