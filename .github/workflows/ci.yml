@@ -880,16 +880,29 @@ jobs:
         run: |
           fur \
             -v \
-            -D \
-              "n" \
-            -p \
-              "pacman" \
-            "inteppacman" > \
-            "${HOME}/log"
-          echo \
-            "Inteppacman install log at '${HOME}/log':"
-          cat \
-            "${HOME}/log"
+            -d \
+            "inteppacman"
+          rm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          pacman \
+            -Udd \
+            --noconfirm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          rm \
+            -rf \
+            "${HOME}/fur"
+          # fur \
+          #   -v \
+          #   -D \
+          #     "n" \
+          #   -p \
+          #     "pacman" \
+          #   "inteppacman" > \
+          #   "${HOME}/log"
+          # echo \
+          #   "Inteppacman install log at '${HOME}/log':"
+          # cat \
+          #   "${HOME}/log"
           inteppacman \
             -v \
             -h
