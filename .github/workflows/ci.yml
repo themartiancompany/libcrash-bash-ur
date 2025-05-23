@@ -885,6 +885,8 @@ jobs:
             -v \
             -D \
               "n" \
+            -p \
+              "pacman" \
             "inteppacman" > \
             "${HOME}/log" || \
             true
