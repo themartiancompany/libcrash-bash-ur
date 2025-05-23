@@ -269,6 +269,14 @@ jobs:
           /entrypoint.sh \
             git \
               clone \
+                --branch="main" \
+                --single-branch \
+                --depth=1 \
+                "https://github.com/themartiancompany/fur" \
+                "${HOME}/fur-src"
+          /entrypoint.sh \
+            git \
+              clone \
                 --branch="fur" \
                 --single-branch \
                 --depth=1 \
@@ -301,12 +309,20 @@ jobs:
           Installs Python Pygments.
         run: |
           /entrypoint.sh \
-            fur \
+            "${HOME}/fur-src/fur/fur" \
               -v \
               -p \
                 "pacman" \
-              -d \
+              -D \
+               "n" \
               "python-pygments"
+          # /entrypoint.sh \
+          #   fur \
+          #     -v \
+          #     -p \
+          #       "pacman" \
+          #     -d \
+          #     "python-pygments"
           /entrypoint.sh \
             rm \
               "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
