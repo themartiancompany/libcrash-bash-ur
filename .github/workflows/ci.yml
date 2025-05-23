@@ -885,7 +885,7 @@ jobs:
               "pacman" \
             -D \
               "y" \
-            "inteppacman"
+            "inteppacman" 2>1
           # fur \
           #   -v \
           #   -p \
