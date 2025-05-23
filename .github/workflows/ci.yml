@@ -269,14 +269,6 @@ jobs:
           /entrypoint.sh \
             git \
               clone \
-                --branch="main" \
-                --single-branch \
-                --depth=1 \
-                "https://github.com/themartiancompany/fur" \
-                "${HOME}/fur-src"
-          /entrypoint.sh \
-            git \
-              clone \
                 --branch="fur" \
                 --single-branch \
                 --depth=1 \
