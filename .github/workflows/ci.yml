@@ -878,7 +878,7 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          bash ~/fur/fur/fur \
+          bash ~/fur-src/fur/fur \
             -v \
             -p \
               "pacman" \
