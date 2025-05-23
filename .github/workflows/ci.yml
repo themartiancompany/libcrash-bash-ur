@@ -878,18 +878,14 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          chmod \
-            "u+x" \
-            "${HOME}/fur-src/fur/fur"
-          "fur" \
+          fur \
             -v \
             -D \
               "n" \
             -p \
               "pacman" \
             "inteppacman" > \
-            "${HOME}/log" || \
-            true
+            "${HOME}/log"
           echo \
             "Inteppacman install log at '${HOME}/log':"
           cat \
