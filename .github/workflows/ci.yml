@@ -883,13 +883,12 @@ jobs:
             -v \
             -h
           bash \
-            "${HOME}/fur-src/fur/fur" \
-            -v \
-            -p \
-              "pacman" \
-            -D \
-              "y" \
-            "inteppacman"
+            "${HOME}/fur-src/fur/fur" -v -D "y" -- "inteppacman"
+            # -p \
+            #   "pacman" \
+            # -D \
+            #   "y" \
+            # "inteppacman"
           # fur \
           #   -v \
           #   -p \
