@@ -883,7 +883,7 @@ jobs:
           fur \
             -v \
             -d \
-            "inteppacman"
+            "inteppacman" 2>1
           rm \
             "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
