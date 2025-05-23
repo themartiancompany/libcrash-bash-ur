@@ -870,7 +870,7 @@ jobs:
         run: |
           git \
             clone \
-              --branch="fur-git" \
+              --branch="fur" \
               --single-branch \
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
@@ -894,22 +894,33 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          chmod \
-            "u+x" \
-            "${HOME}/fur-src/fur/fur"
-          "fur" \
-            -v \
-            -D \
-              "n" \
-            -p \
-              "pacman" \
-            "inteppacman" > \
-            "${HOME}/log" || \
-            true
           echo \
-            "Inteppacman install log at '${HOME}/log':"
-          cat \
-            "${HOME}/log"
+            "$(id)"
+          fur \
+            -v \
+            -d \
+            "inteppacman" 2>1
+          rm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
+          pacman \
+            -Udd \
+            --noconfirm \
+            "${HOME}/fur/arch/any/"*".pkg.tar."*
+          rm \
+            -rf \
+            "${HOME}/fur"
+          # fur \
+          #   -v \
+          #   -D \
+          #     "n" \
+          #   -p \
+          #     "pacman" \
+          #   "inteppacman" > \
+          #   "${HOME}/log"
+          # echo \
+          #   "Inteppacman install log at '${HOME}/log':"
+          # cat \
+          #   "${HOME}/log"
           inteppacman \
             -v \
             -h
