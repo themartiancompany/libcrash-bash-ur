@@ -309,53 +309,18 @@ jobs:
                 -D \
                  "n" \
                 "python-pygments"
-          # /entrypoint.sh \
-          #   fur \
-          #     -v \
-          #     -p \
-          #       "pacman" \
-          #     -d \
-          #     "python-pygments"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            tree \
-              "${HOME}"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
       - name:
           Installs reallymakepkg.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "reallymakepkg"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            tree \
-              "${HOME}"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "reallymakepkg"
       - name:
           Installs 'build essential' ahah.
         run: |
@@ -380,244 +345,134 @@ jobs:
           Installs Python Docutils.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "python-docutils"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "python-docutils"
       - name:
           Installs EVM Chains Info.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evm-chains-info"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "evm-chains-info"
       - name:
           Installs EVM Chains Explorers.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evm-chains-explorers"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "evm-chains-explorers"
       - name:
           Installs LibEVM.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "libevm"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "libevm"
       - name:
           Installs EVM Contracts Tools.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evm-contracts-tools"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "evm-contracts-tools"
       - name:
           Installs EVM Wallet.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evm-wallet"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "evm-wallet"
       - name:
           Installs EVMFS.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evmfs"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "evmfs"
       - name:
           Installs EVM Contracts Source Index.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "evm-contracts-source-index-git"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "evm-contracts-source-index-git"
       - name:
           Installs Aspe.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "aspe"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "aspe"
       - name:
           Installs Lur.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "lur"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "lur"
       - name:
           Installs Meson.
         run: |
           /entrypoint.sh \
-            fur \
-              -v \
-              -p \
-                "pacman" \
-              -d \
-              "meson"
-          /entrypoint.sh \
-            rm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*".sig"
-          /entrypoint.sh \
-            pacman \
-              -Udd \
-              --noconfirm \
-              "${HOME}/fur/termux/any/"*".pkg.tar."*
-          /entrypoint.sh \
-            rm \
-              -rf \
-              "${HOME}/fur"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "meson"
       - name:
           Installs Clang and Ninja.
         run: |
