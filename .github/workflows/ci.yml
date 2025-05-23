@@ -301,13 +301,14 @@ jobs:
           Installs Python Pygments.
         run: |
           /entrypoint.sh \
-            "${HOME}/fur-src/fur/fur" \
-              -v \
-              -p \
-                "pacman" \
-              -D \
-               "n" \
-              "python-pygments"
+            bash \
+              "${HOME}/fur-src/fur/fur" \
+                -v \
+                -p \
+                  "pacman" \
+                -D \
+                 "n" \
+                "python-pygments"
           # /entrypoint.sh \
           #   fur \
           #     -v \
