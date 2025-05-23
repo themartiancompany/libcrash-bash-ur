@@ -854,7 +854,7 @@ jobs:
         run: |
           git \
             clone \
-              --branch="fur-git" \
+              --branch="fur" \
               --single-branch \
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
@@ -883,7 +883,7 @@ jobs:
           #   -v \
           #   -h
           bash \
-            "${HOME}/fur-src/fur/fur" -v -D "n" -- "inteppacman"
+            "${HOME}/fur-src/fur/fur" -v -D "n" "inteppacman"
             # -p \
             #   "pacman" \
             # -D \
