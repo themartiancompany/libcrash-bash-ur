@@ -850,11 +850,11 @@ jobs:
             -rf \
             "${HOME}/fur"
       - name:
-          Installs Fur.
+          Installs latest Fur.
         run: |
           git \
             clone \
-              --branch="fur" \
+              --branch="fur-git" \
               --single-branch \
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
