@@ -899,7 +899,7 @@ jobs:
       # - name:
       #     Installs EVM Contracts Source Index.
       #   run: |
-            bash \
+      #     bash \
       #       "${HOME}/fur-src/fur/fur" \
       #         -v \
       #         -p \
