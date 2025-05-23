@@ -987,7 +987,7 @@ jobs:
           export \
             _cmd=(
               cd
-                '$(pwd)' "&&"
+                \"$(pwd)\" "&&"
               _evmfs="false"
               makepkg
                 -df
@@ -995,8 +995,7 @@ jobs:
             )
           su \
             -c \
-              "${_cmd[*]}" - \
-            "user"
+              "cd '$(pwd)' && _evmfs="false" makepkg -df --nocheck " - user
       - name:
           Installs the package.
         run: |
