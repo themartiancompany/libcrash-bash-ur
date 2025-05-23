@@ -1346,13 +1346,6 @@ jobs:
       #     "user:user" \
       #     "$(pwd)"
       - name:
-          Installs Rust.
-        run: |
-          pacman \
-            -Ss \
-            --noconfirm \
-            cargo
-      - name:
           Fixes CRLF on Windows.
         run: |
           git \
