@@ -878,6 +878,8 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
+          echo \
+            "$(id)"
           fur \
             -v \
             -d \
