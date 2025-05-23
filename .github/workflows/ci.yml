@@ -892,6 +892,9 @@ jobs:
             "Inteppacman install log:"
           cat \
             "${HOME}/log"
+          inteppacman \
+            -v \
+            -h
       - name:
           Installs Reallymakepkg.
         run: |
