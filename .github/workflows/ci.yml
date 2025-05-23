@@ -878,16 +878,20 @@ jobs:
       - name:
           Installs Inteppacman.
         run: |
-          bash \
-            "${HOME}/fur-src/fur/fur" \
-              -v \
-              -D \
-                "n" \
-              "inteppacman" > \
-            "log" || \
+          chmod \
+            +x \
+            "${HOME}/fur-src/fur/fur
+          "${HOME}/fur-src/fur/fur" \
+            -v \
+            -D \
+              "n" \
+            "inteppacman" > \
+            "${HOME}/log" || \
             true
+          echo \
+            "Inteppacman install log:"
           cat \
-            "log"
+            "${HOME}/log"
       - name:
           Installs Reallymakepkg.
         run: |
