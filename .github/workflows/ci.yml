@@ -714,7 +714,7 @@ jobs:
             -rf \
             "${HOME}/fur"
       - name:
-          Installs latest Fur.
+          Installs Fur.
         run: |
           git \
             clone \
@@ -723,13 +723,6 @@ jobs:
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
               "${HOME}/fur"
-          git \
-            clone \
-              --branch="stable" \
-              --single-branch \
-              --depth=1 \
-              "https://github.com/themartiancompany/fur" \
-              "${HOME}/fur-src"
           rm \
             "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
           pacman \
@@ -739,6 +732,16 @@ jobs:
           rm \
             -rf \
             "${HOME}/fur"
+      - name:
+          Installs latest Fur.
+        run: |
+          git \
+            clone \
+              --branch="stable" \
+              --single-branch \
+              --depth=1 \
+              "https://github.com/themartiancompany/fur" \
+              "${HOME}/fur-src"
       - name:
           Installs Inteppacman.
         run: |
@@ -753,277 +756,190 @@ jobs:
       - name:
           Installs Reallymakepkg.
         run: |
-          fur \
-            -v \
-            -d \
-            "reallymakepkg"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "reallymakepkg"
       - name:
           Installs Node Run.
         run: |
-          fur \
-            -v \
-            -d \
-            "node-run"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "node-run"
       - name:
           Installs LibcrashJS.
         run: |
-          fur \
-            -v \
-            -d \
-            "libcrash-js"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          tree \
-            "${HOME}"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "libcrash-js"
       - name:
           Installs EVM Chains.
         run: |
-          fur \
-            -v \
-            -d \
-            "evm-chains"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evm-chains"
       - name:
           Installs Python AIOEtherscan.
         run: |
-          fur \
-            -v \
-            -d \
-            "python-aioetherscan"
-          rm \
-            "${HOME}/fur/arch/${{ matrix.architecture }}/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/${{ matrix.architecture }}/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "python-aioetherscan"
       - name:
           Installs Node Ethers.
         run: |
-          fur \
-            -v \
-            -d \
-            "nodejs-ethers"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "nodejs-ethers"
       - name:
           Installs EVM Chains Info.
         run: |
-          fur \
-            -v \
-            -d \
-            "evm-chains-info"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evm-chains-info"
       - name:
           Installs EVM Chains Explorers.
         run: |
-          fur \
-            -v \
-            -d \
-            "evm-chains-explorers"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evm-chains-explorers"
       - name:
           Installs LibEVM.
         run: |
-          fur \
-            -v \
-            -d \
-            "libevm"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "libevm"
       - name:
           Installs EVM Wallet.
         run: |
-          fur \
-            -v \
-            -d \
-            "evm-wallet"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evm-wallet"
       - name:
           Installs EVM Contracts ABI Get.
         run: |
-          fur \
-            -v \
-            -d \
-            "evm-contracts-abi-get"
-          rm \
-            "${HOME}/fur/arch/${{ matrix.architecture }}/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/${{ matrix.architecture }}/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evm-contracts-abi-get"
       - name:
           Installs EVM Contracts Tools.
         run: |
-          fur \
-            -v \
-            -d \
-            "evm-contracts-tools"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evm-contracts-tools"
       - name:
           Installs EVMFS.
         run: |
-          fur \
-            -v \
-            -d \
-            "evmfs"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "evmfs"
       # - name:
       #     Installs EVM Contracts Source Index.
       #   run: |
-      #     fur \
-      #       -v \
-      #       -d \
-      #       "evm-contracts-source-index-git"
-      #     rm \
-      #       "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-      #     pacman \
-      #       -Udd \
-      #       --noconfirm \
-      #       "${HOME}/fur/arch/any/"*".pkg.tar."*
-      #     rm \
-      #       -rf \
-      #       "${HOME}/fur"
+            bash \
+      #       "${HOME}/fur-src/fur/fur" \
+      #         -v \
+      #         -p \
+      #           "pacman" \
+      #         -D \
+      #          "n" \
+      #         "evm-contracts-source-index-git"
       - name:
           Installs Aspe.
         run: |
-          fur \
-            -v \
-            -d \
-            "aspe"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "aspe"
       - name:
           Installs Lur.
         run: |
-          fur \
-            -v \
-            -d \
-            "lur"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "lur"
       - name:
           Installs Ur.
         run: |
-          fur \
-            -v \
-            -d \
-            "ur"
-          rm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*".sig"
-          pacman \
-            -Udd \
-            --noconfirm \
-            "${HOME}/fur/arch/any/"*".pkg.tar."*
-          rm \
-            -rf \
-            "${HOME}/fur"
+          bash \
+            "${HOME}/fur-src/fur/fur" \
+              -v \
+              -p \
+                "pacman" \
+              -D \
+               "n" \
+              "ur"
       - name:
           Setups an user. This is something which exists on the Ur for a reason.
         run: |
@@ -1068,16 +984,22 @@ jobs:
       - name:
           Builds the package.
         run: |
+          export \
+            _cmd=(
+              cd
+                '$(pwd)' "&&"
+              _evmfs="false"
+              makepkg
+                -df
+                --nocheck
+            )
           su \
             -c \
-              "cd '$(pwd)' && _evmfs="false" makepkg -df --nocheck" - \
+              "${_cmd[*]}" - \
             "user"
       - name:
           Installs the package.
         run: |
-          # mv \
-          #   "/home/user/lur/sequoia-sq/"*".pkg.tar."* \
-          #   "$(pwd)"
           pacman \
             -Udd \
             --noconfirm \
@@ -1159,6 +1081,16 @@ jobs:
           pacman \
             -Syu \
             --noconfirm
+      - name:
+          Installs latest Fur.
+        run: |
+          git \
+            clone \
+              --branch="stable" \
+              --single-branch \
+              --depth=1 \
+              "https://github.com/themartiancompany/fur" \
+              "${HOME}/fur-src"
       # - name:
       #     Setups an user. This is something which exists on the Ur for a reason.
       # run: |
