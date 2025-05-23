@@ -854,7 +854,7 @@ jobs:
         run: |
           git \
             clone \
-              --branch="fur" \
+              --branch="fur-git" \
               --single-branch \
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
@@ -881,7 +881,7 @@ jobs:
           chmod \
             "u+x" \
             "${HOME}/fur-src/fur/fur"
-          "${HOME}/fur-src/fur/fur" \
+          "fur" \
             -v \
             -D \
               "n" \
@@ -891,7 +891,7 @@ jobs:
             "${HOME}/log" || \
             true
           echo \
-            "Inteppacman install log:"
+            "Inteppacman install log at '${HOME}/log':"
           cat \
             "${HOME}/log"
           inteppacman \
