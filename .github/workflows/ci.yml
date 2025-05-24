@@ -301,7 +301,7 @@ jobs:
               -C \
                 "${HOME}/fur-src" \
               checkout \
-                "a3dd6ce73cc985dec25f24c225c8b3607a183a71"
+                "5d1c9ef3b9592ebae38cef068a1600adecb669f6"
       - name:
           Installs Python Pygments.
         run: |
