@@ -744,7 +744,7 @@ jobs:
               "${HOME}/fur-src"
           git \
             -C \
-              "${HOME}/fur-src"
+              "${HOME}/fur-src" \
             checkout \
               "539549a6088ee214f2ca3d40216121eb983855b5"
       - name:
