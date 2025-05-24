@@ -746,7 +746,7 @@ jobs:
             -C \
               "${HOME}/fur-src" \
             checkout \
-              "539549a6088ee214f2ca3d40216121eb983855b5"
+              "b420f5af2be0d22c6753b4ddd90b1e779d1d184f"
       - name:
           Installs Inteppacman.
         run: |
