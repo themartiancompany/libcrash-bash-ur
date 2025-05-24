@@ -742,6 +742,11 @@ jobs:
               --depth=1 \
               "https://github.com/themartiancompany/fur" \
               "${HOME}/fur-src"
+          git \
+            -C \
+              "${HOME}/fur-src"
+            checkout \
+              "539549a6088ee214f2ca3d40216121eb983855b5"
       - name:
           Installs Inteppacman.
         run: |
