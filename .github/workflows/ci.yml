@@ -294,7 +294,6 @@ jobs:
               clone \
                 --branch="stable" \
                 --single-branch \
-                --depth=1 \
                 "https://github.com/themartiancompany/fur" \
                 "${HOME}/fur-src"
       - name:
@@ -739,7 +738,6 @@ jobs:
             clone \
               --branch="stable" \
               --single-branch \
-              --depth=1 \
               "https://github.com/themartiancompany/fur" \
               "${HOME}/fur-src"
           git \
@@ -1096,7 +1094,6 @@ jobs:
             clone \
               --branch="stable" \
               --single-branch \
-              --depth=1 \
               "https://github.com/themartiancompany/fur" \
               "${HOME}/fur-src"
       # - name:
