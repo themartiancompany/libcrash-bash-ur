@@ -928,18 +928,19 @@ jobs:
                 "pacman" \
               -D \
                "n" \
-              "lur"
-      - name:
-          Installs Ur.
-        run: |
-          bash \
-            "${HOME}/fur-src/fur/fur" \
-              -v \
-              -p \
-                "pacman" \
-              -D \
-               "n" \
+              "lur" \
               "ur"
+      # - name:
+      #     Installs Ur.
+      #   run: |
+      #     bash \
+      #       "${HOME}/fur-src/fur/fur" \
+      #         -v \
+      #         -p \
+      #           "pacman" \
+      #         -D \
+      #          "n" \
+      #         "ur"
       - name:
           Setups an user. This is something which exists on the Ur for a reason.
         run: |
