@@ -296,6 +296,12 @@ jobs:
                 --single-branch \
                 "https://github.com/themartiancompany/fur" \
                 "${HOME}/fur-src"
+          /entrypoint.sh \
+            git \
+              -C \
+                "${HOME}/fur-src" \
+              checkout \
+                "a3dd6ce73cc985dec25f24c225c8b3607a183a71"
       - name:
           Installs Python Pygments.
         run: |
@@ -1096,6 +1102,11 @@ jobs:
               --single-branch \
               "https://github.com/themartiancompany/fur" \
               "${HOME}/fur-src"
+          git \
+            -C \
+              "${HOME}/fur-src" \
+            checkout \
+              "a3dd6ce73cc985dec25f24c225c8b3607a183a71"
       # - name:
       #     Setups an user. This is something which exists on the Ur for a reason.
       # run: |
