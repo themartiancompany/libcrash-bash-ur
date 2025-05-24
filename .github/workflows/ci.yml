@@ -752,8 +752,8 @@ jobs:
                 "pacman" \
               -D \
                "n" \
-              "inteppacman" \
-              "reallymakepkg"
+              "inteppacman" # \
+              # "reallymakepkg"
       - name:
           Installs Reallymakepkg.
         run: |
