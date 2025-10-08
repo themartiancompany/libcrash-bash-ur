@@ -138,15 +138,15 @@ if [[ "${_evmfs}" == "true" ]]; then
       "${_archive_sig_sum}"
     )
   fi
-elif [[ "${_evmfs}" == true ]]; then
-  if [[ "${_git}" == true ]]; then
+elif [[ "${_evmfs}" == "false" ]]; then
+  if [[ "${_git}" == "true" ]]; then
     makedepends+=(
       "git"
     )
     _uri="git+${_url}#${_tag_name}=${_tag}?signed"
     _src="${_tarname}::${_uri}"
     _sum="SKIP"
-  elif [[ "${_git}" == false ]]; then
+  elif [[ "${_git}" == "false" ]]; then
     if [[ "${_tag_name}" == 'pkgver' ]]; then
       _uri="${_url}/archive/refs/tags/${_tag}.${_archive_format}"
     elif [[ "${_tag_name}" == "commit" ]]; then
