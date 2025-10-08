@@ -54,8 +54,8 @@ if [[ "${_docs}" == "true" ]]; then
     "${pkgbase}-docs"
   )
 fi
-pkgver="0.0.0.0.0.1.1"
-_commit="4e95a96ef5d51ed42500d5ea30c36edd02dae348"
+pkgver="0.0.0.0.0.1.1.1"
+_commit="7d862167df665447ce7ffb0aab881b1515ae1f9c"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -209,4 +209,3 @@ package_libcrash-bash-docs() {
 }
 
 # vim: ft=sh syn=sh et
-7d862167df665447ce7ffb0aab881b1515ae1f9c
