@@ -173,11 +173,23 @@ check() {
 }
 
 prepare() {
+  local \
+    _cmd=()
   if [[ ! -d "${srcdir}/${_tarname}" ]]; then
     cd \
       "${srcdir}"
-    unzip \
-      "${srcdir}/${_tarname}.zip"
+    if [[ "${_archive_format}" == "tar.gz" ]]; then
+      _cmd+=(
+        tar
+          xf
+      )
+    elif [[ "${_archive_format}" == "zip" ]]; then
+      _cmd+=(
+        unzip
+      )
+    fi
+    "${_cmd[@]}" \
+      "${_tarname}.${_archive_format}"
   fi
 }
 
