@@ -102,14 +102,14 @@ fi
 _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
+_archive_sum="740c0c9ac18b06ebaed1beade7e5f0057e3b0be271ea612c6f6d7b952f86cedd"
+_archive_sig_sum="5575df65232f6caeefc1670227289712257e39228787bd69e18b96b8db53492e"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
-_archive_sum='5a80a815e4935cea2355c7dcca737e85ce6be245a2283bd3aa9186296e1d4024'
 _evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.zip::${_evmfs_archive_uri}"
-_archive_sig_sum="1a9dbc07933d8f745b95dd18ac63e5c795f07375b1737a46b1dcf8d81d2427fd"
 _archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
 _archive_sig_src="${_tarname}.zip.sig::${_archive_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
@@ -209,3 +209,4 @@ package_libcrash-bash-docs() {
 }
 
 # vim: ft=sh syn=sh et
+7d862167df665447ce7ffb0aab881b1515ae1f9c
