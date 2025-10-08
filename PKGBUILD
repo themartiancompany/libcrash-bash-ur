@@ -115,40 +115,46 @@ _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _archive_sum="740c0c9ac18b06ebaed1beade7e5f0057e3b0be271ea612c6f6d7b952f86cedd"
 _archive_sig_sum="5575df65232f6caeefc1670227289712257e39228787bd69e18b96b8db53492e"
+# Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
-# Dvorak
-_evmfs_archive_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sum}"
+_evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
+_evmfs_archive_uri="${_evmfs_dir}/${_archive_sum}"
 _evmfs_archive_src="${_tarname}.${_archive_format}::${_evmfs_archive_uri}"
-_archive_sig_uri="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}/${_archive_sig_sum}"
+_archive_sig_uri="${_evmfs_dir}/${_archive_sig_sum}"
 _archive_sig_src="${_tarname}.${_archive_format}.sig::${_archive_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
   makedepends+=(
     "evmfs"
   )
-  _src="${_evmfs_archive_src}"
-  _sum="${_archive_sum}"
-  source+=(
-    "${_archive_sig_src}"
-  )
-  sha256sums+=(
-    "${_archive_sig_sum}"
-  )
-elif [[ "${_git}" == true ]]; then
-  makedepends+=(
-    "git"
-  )
-  _src="${_tarname}::git+${_url}#${_tag_name}=${_tag}?signed"
-  _sum="SKIP"
-elif [[ "${_git}" == false ]]; then
-  if [[ "${_tag_name}" == 'pkgver' ]]; then
-    _uri="${_url}/archive/refs/tags/${_tag}.${_archive_format}"
-  elif [[ "${_tag_name}" == "commit" ]]; then
-    _uri="${_url}/archive/${_commit}.${_archive_format}"
+  if [[ "${_git}" == "false" ]]; then
+    _src="${_evmfs_archive_src}"
+    _sum="${_archive_sum}"
+    source+=(
+      "${_archive_sig_src}"
+    )
+    sha256sums+=(
+      "${_archive_sig_sum}"
+    )
   fi
-  _src="${_tarname}.${_archive_format}::${_uri}"
-  _sum="${_archive_sum}"
+elif [[ "${_evmfs}" == true ]]; then
+  if [[ "${_git}" == true ]]; then
+    makedepends+=(
+      "git"
+    )
+    _uri="git+${_url}#${_tag_name}=${_tag}?signed"
+    _src="${_tarname}::${_uri}"
+    _sum="SKIP"
+  elif [[ "${_git}" == false ]]; then
+    if [[ "${_tag_name}" == 'pkgver' ]]; then
+      _uri="${_url}/archive/refs/tags/${_tag}.${_archive_format}"
+    elif [[ "${_tag_name}" == "commit" ]]; then
+      _uri="${_url}/archive/${_commit}.${_archive_format}"
+    fi
+    _src="${_tarname}.${_archive_format}::${_uri}"
+    _sum="${_archive_sum}"
+  fi
 fi
 source+=(
   "${_src}"
