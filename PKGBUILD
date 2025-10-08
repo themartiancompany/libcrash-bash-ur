@@ -50,6 +50,7 @@ if [[ ! -v "_git_http" ]]; then
 fi
 _archive_format="tar.gz"
 if [[ "${_git_http}" == "github" ]]; then
+  _archive_format="zip"
 fi
 _docs="true"
 _py="python"
