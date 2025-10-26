@@ -68,11 +68,13 @@ if [[ "${_docs}" == "true" ]]; then
     "${pkgbase}-docs"
   )
 fi
-pkgver="0.0.0.0.0.1.1.1"
+pkgver="0.0.0.0.0.0.0.0.0.0.0.1.1.1"
 _commit="a987ace08d1fa87f3cea40165e225884a99e35d5"
 pkgrel=1
 _pkgdesc=(
-  "A collection of bash utility functions."
+  "A Bash library of GNU"
+  "Privacy Guard related"
+  "functions."
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
@@ -86,6 +88,9 @@ license=(
 )
 depends=(
   "bash"
+  "gawk"
+  "gnupg"
+  "grep"
 )
 _libcrash_gpg_docs_optdepends=(
   "${_pkg}-docs:"
