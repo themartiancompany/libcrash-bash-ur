@@ -69,7 +69,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="0.0.0.0.0.1.1.1"
-_commit="14fbff57061289c65b837d586c7f833cafed427c"
+_commit="a987ace08d1fa87f3cea40165e225884a99e35d5"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -127,8 +127,8 @@ _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
-_sum="49c1dd040ed25c284045128ffc861e8e8fa1af9ae60871345fe79acc52985bd2"
-_sig_sum="5d50991c11f601ae8d98f1b37a0713b9289fd43ab8aa37014c17a3fd926eba6f"
+_sum="8010017c1d6bc2fae454b4e99a4d1862dd8b432d9a6f7a19b0f4d1951b11ea2f"
+_sig_sum="5dfcfdbd6a3d0090cd5f7f186bd361907480b9fc7d24ae351800c018847d4d3d"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
@@ -245,7 +245,6 @@ package_libcrash-gpg-docs() {
   make \
     "${_make_opts[@]}" \
     install-doc \
-    install-examples \
     install-man
   install \
     -vDm755 \
