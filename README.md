@@ -19,7 +19,7 @@
 [comment]: <> (License along with this program.)
 [comment]: <> (If not, see <https://www.gnu.org/licenses/>.)
 
-# `libcrash-bash`
+# `libcrash-gpg`
 
 universal recipe for
 [user repo](

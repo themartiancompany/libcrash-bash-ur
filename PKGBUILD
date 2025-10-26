@@ -19,10 +19,13 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-# Maintainer: Truocolo <truocolo@aol.com>
-# Maintainer: Truocolo <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
-# Maintainer: Pellegrino Prevete (dvorak) <pellegrinoprevete@gmail.com>
-# Maintainer: Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
+# Maintainers:
+#   Truocolo
+#     <truocolo@aol.com>
+#     <truocolo@0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b>
+#   Pellegrino Prevete (dvorak)
+#     <pellegrinoprevete@gmail.com>
+#     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
 _evmfs_available="$( \
   command \
@@ -55,7 +58,7 @@ fi
 _docs="true"
 _py="python"
 _py2="python2"
-_pkg=crash-bash
+_pkg=crash-gpg
 pkgbase="lib${_pkg}"
 pkgname=(
   "${pkgbase}"
@@ -66,7 +69,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="0.0.0.0.0.1.1.1"
-_commit="7d862167df665447ce7ffb0aab881b1515ae1f9c"
+_commit="a982c55285fb127c80b99f147cbec57600cd92c9"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -84,9 +87,19 @@ license=(
 depends=(
   "bash"
 )
+_libcrash_gpg_docs_optdepends=(
+  "${_pkg}-docs:"
+    "Crash GNU Privacy Guard"
+    "library documentation"
+    "and manuals."
+)
+_libcrash_gpg_docs_ref_optdepends+=(
+ "${_pkg}:"
+   "the package this documentation"
+   "package pertains to."
+)
 optdepends=(
-  "${_py}-pygments: colorized output and syntax highlighting"
-  "${_py2}-pygments: colorized output and syntax highlighting (Python 2)"
+  "${_libcrash_gpg_docs_optdepends[*]}"
 )
 if [[ "${_os}" != "GNU/Linux" ]] && \
    [[ "${_os}" == "Android" ]]; then
@@ -113,29 +126,29 @@ fi
 _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
-_archive_sum="740c0c9ac18b06ebaed1beade7e5f0057e3b0be271ea612c6f6d7b952f86cedd"
-_archive_sig_sum="5575df65232f6caeefc1670227289712257e39228787bd69e18b96b8db53492e"
+_tarfile="${_tarname}.${_archive_format}"
+_sum="c20644959676124702fa8614fdc3d79bbf3e20ac9d23f8bb2886a6fc7e4231d7"
+_sig_sum="4badf9be45f69332db9298f10d9930166040c06fd29218ee7ff91df8138217a7"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
-_evmfs_archive_uri="${_evmfs_dir}/${_archive_sum}"
-_evmfs_archive_src="${_tarname}.${_archive_format}::${_evmfs_archive_uri}"
-_archive_sig_uri="${_evmfs_dir}/${_archive_sig_sum}"
-_archive_sig_src="${_tarname}.${_archive_format}.sig::${_archive_sig_uri}"
+_evmfs_uri="${_evmfs_dir}/${_sum}"
+_evmfs_src="${_tarfile}::${_evmfs_uri}"
+_sig_uri="${_evmfs_dir}/${_sig_sum}"
+_sig_src="${_tarfile}.sig::${_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
   makedepends+=(
     "evmfs"
   )
   if [[ "${_git}" == "false" ]]; then
-    _src="${_evmfs_archive_src}"
-    _sum="${_archive_sum}"
+    _src="${_evmfs_src}"
     source+=(
-      "${_archive_sig_src}"
+      "${_sig_src}"
     )
     sha256sums+=(
-      "${_archive_sig_sum}"
+      "${_sig_sum}"
     )
   fi
 elif [[ "${_evmfs}" == "false" ]]; then
@@ -152,8 +165,7 @@ elif [[ "${_evmfs}" == "false" ]]; then
     elif [[ "${_tag_name}" == "commit" ]]; then
       _uri="${_url}/archive/${_commit}.${_archive_format}"
     fi
-    _src="${_tarname}.${_archive_format}::${_uri}"
-    _sum="${_archive_sum}"
+    _src="${_tarfile}::${_uri}"
   fi
 fi
 source+=(
@@ -199,42 +211,46 @@ prepare() {
   fi
 }
 
-package_libcrash-bash() {
-  msg \
-    "${srcdir}"
-  ls \
-    "${srcdir}"
+package_libcrash-gpg() {
+  local \
+    _make_opts=()
+  _make_opts+=(
+    PREFIX="/usr"
+    DESTDIR="${pkgdir}"
+  )
   cd \
-    "${srcdir}/${_tarname}"
+    "${_tarname}"
   make \
-    PREFIX="/usr" \
-    DESTDIR="${pkgdir}" \
+    "${_make_opts[@]}" \
     "install-${_pkg}"
   install \
     -vDm755 \
     "COPYING" \
-    "${pkgdir}/usr/share/licenses/${pkgbase}/COPYING"
+    "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
 }
 
-package_libcrash-bash-docs() {
+package_libcrash-gpg-docs() {
+  local \
+    _make_opts=()
+  optdepends=(
+    "${_libcrash_gpg_docs_ref_optdepends[*]}"
+  )
+  _make_opts+=(
+    PREFIX="/usr"
+    DESTDIR="${pkgdir}"
+  )
   cd \
     "${_tarname}"
+  depends=()
   make \
-    PREFIX="/usr" \
-    DESTDIR="${pkgdir}" \
-    install-doc
-  make \
-    PREFIX="/usr" \
-    DESTDIR="${pkgdir}" \
-    install-examples
-  make \
-    PREFIX="/usr" \
-    DESTDIR="${pkgdir}" \
+    "${_make_opts[@]}" \
+    install-doc \
+    install-examples \
     install-man
   install \
     -vDm755 \
     "COPYING" \
-    "${pkgdir}/usr/share/licenses/${pkgbase}-docs/COPYING"
+    "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
 }
 
 # vim: ft=sh syn=sh et
