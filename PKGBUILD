@@ -69,7 +69,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="0.0.0.0.0.1.1.1"
-_commit="a982c55285fb127c80b99f147cbec57600cd92c9"
+_commit="14fbff57061289c65b837d586c7f833cafed427c"
 pkgrel=1
 _pkgdesc=(
   "A collection of bash utility functions."
@@ -127,8 +127,8 @@ _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
-_sum="c20644959676124702fa8614fdc3d79bbf3e20ac9d23f8bb2886a6fc7e4231d7"
-_sig_sum="4badf9be45f69332db9298f10d9930166040c06fd29218ee7ff91df8138217a7"
+_sum="49c1dd040ed25c284045128ffc861e8e8fa1af9ae60871345fe79acc52985bd2"
+_sig_sum="5d50991c11f601ae8d98f1b37a0713b9289fd43ab8aa37014c17a3fd926eba6f"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
