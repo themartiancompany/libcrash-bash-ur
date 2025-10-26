@@ -71,7 +71,7 @@ if [[ "${_docs}" == "true" ]]; then
   )
 fi
 pkgver="0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
-_commit="b4d0804cb9383e48801eb78d57659c1a06ba2631"
+_commit="55df70d0af0fbd669429d7423237cfb316c7bffb"
 pkgrel=1
 _pkgdesc=(
   "A Bash library of GNU"
@@ -136,8 +136,8 @@ _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
-_sum="ec75f9b3e90cfb7afe6f6fcc680d62a058224bbf4b5a12b8c32154f4ac708c31"
-_sig_sum="ce329c3622b71894918bc0b852db7b55a1be2c28e5f8f9b04ef977f44d69b673"
+_sum="db88bebdc41b0ce50f6a8a8737a7d4c26143be6382312d5acdd744060a7cf29b"
+_sig_sum="a69254cc69aa556af8d9cc8d64c63a2ac836fd151b3f184fcf85351fd34cf35f"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 _evmfs_network="100"
