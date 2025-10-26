@@ -51,11 +51,13 @@ fi
 if [[ ! -v "_git_http" ]]; then
   _git_http="gitlab"
 fi
+if [[ ! -v "_docs" ]]; then
+  _docs="true"
+fi
 _archive_format="tar.gz"
 if [[ "${_git_http}" == "github" ]]; then
   _archive_format="zip"
 fi
-_docs="true"
 _py="python"
 _py2="python2"
 _pkg=crash-gpg
@@ -88,9 +90,11 @@ license=(
 )
 depends=(
   "bash"
+  "coreutils"
   "gawk"
   "gnupg"
   "grep"
+  "util-linux"
 )
 _libcrash_gpg_docs_optdepends=(
   "${_pkg}-docs:"
