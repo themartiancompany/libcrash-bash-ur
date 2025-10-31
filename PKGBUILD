@@ -60,7 +60,7 @@ if [[ "${_git_http}" == "github" ]]; then
 fi
 _py="python"
 _py2="python2"
-_pkg=crash-gpg
+_pkg=crash-bash
 pkgbase="lib${_pkg}"
 pkgname=(
   "${pkgbase}"
@@ -96,19 +96,19 @@ depends=(
   "grep"
   "util-linux"
 )
-_libcrash_gpg_docs_optdepends=(
+_libcrash_bash_docs_optdepends=(
   "${_pkg}-docs:"
-    "Crash GNU Privacy Guard"
+    "Crash Bash"
     "library documentation"
     "and manuals."
 )
-_libcrash_gpg_docs_ref_optdepends+=(
+_libcrash_bash_docs_ref_optdepends+=(
  "${_pkg}:"
    "the package this documentation"
    "package pertains to."
 )
 optdepends=(
-  "${_libcrash_gpg_docs_optdepends[*]}"
+  "${_libcrash_bash_docs_optdepends[*]}"
 )
 if [[ "${_os}" != "GNU/Linux" ]] && \
    [[ "${_os}" == "Android" ]]; then
@@ -220,7 +220,7 @@ prepare() {
   fi
 }
 
-package_libcrash-gpg() {
+package_libcrash-bash() {
   local \
     _make_opts=()
   _make_opts+=(
@@ -238,11 +238,11 @@ package_libcrash-gpg() {
     "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
 }
 
-package_libcrash-gpg-docs() {
+package_libcrash-bash-docs() {
   local \
     _make_opts=()
   optdepends=(
-    "${_libcrash_gpg_docs_ref_optdepends[*]}"
+    "${_libcrash_bash_docs_ref_optdepends[*]}"
   )
   _make_opts+=(
     PREFIX="/usr"
