@@ -70,8 +70,8 @@ if [[ "${_docs}" == "true" ]]; then
     "${pkgbase}-docs"
   )
 fi
-pkgver="0.0.0.0.0.0.0.0.0.0.0.1.1.1.1"
-_commit="8b1ce8109c57769acc0f1131e5aba53699cbec4b"
+pkgver="0.0.0.0.0.1.1.1.1"
+_commit="366c68d4a174f6213f007132683fbc6c6d7215e7"
 pkgrel=1
 _pkgdesc=(
   "A Bash library of GNU"
@@ -136,10 +136,13 @@ _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
-_sum="1d3cd2121f1a5087e043ee50a420f715389bcbe072fca5dbdaa5fa62c77d84e5"
+_sum="9a6f7ace1112cf7abf3b231f0cd133a58752e245b04fada0b1fd65c3e1765e1c"
+_sig_sum="e9435b39f5a361211209679fcb5329fa85af8014620cc070939e6fc4a98c27eb"
 _sig_sum="550a9a30d6688ac8c7831cad90f0a19972862d9a7d04477dfe46191c93e40c01"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
+# Truocolo
+_evmfs_ns="0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b"
 _evmfs_network="100"
 _evmfs_address="0x69470b18f8b8b5f92b48f6199dcb147b4be96571"
 _evmfs_dir="evmfs://${_evmfs_network}/${_evmfs_address}/${_evmfs_ns}"
