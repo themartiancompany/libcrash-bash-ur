@@ -138,7 +138,6 @@ _tarname="${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
 _sum="9a6f7ace1112cf7abf3b231f0cd133a58752e245b04fada0b1fd65c3e1765e1c"
 _sig_sum="e9435b39f5a361211209679fcb5329fa85af8014620cc070939e6fc4a98c27eb"
-_sig_sum="550a9a30d6688ac8c7831cad90f0a19972862d9a7d04477dfe46191c93e40c01"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 # Truocolo
