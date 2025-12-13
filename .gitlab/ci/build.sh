@@ -137,11 +137,6 @@ _build() {
     -df
     --nocheck
   )
-  if [[ "${_evmfs}" == "false" ]]; then
-    _makepkg_opts+=(
-      --skippgpcheck
-    )
-  fi
   _cmd+=(
     "cd"
       "/home/user/${_pkgname}" "&&"
