@@ -70,74 +70,74 @@ if [[ "${_docs}" == "true" ]]; then
     "${pkgbase}-docs"
   )
 fi
-pkgver="0.0.0.0.0.1.1.1.1"
-_commit="366c68d4a174f6213f007132683fbc6c6d7215e7"
+pkgver="0.0.0.0.0.1.1.1.1.1"
+_commit="ef8a610ec3b53421e5e5b8f1195aef93e3ffe69b"
 pkgrel=1
 _pkgdesc=(
-  "A Bash library of GNU"
-  "Privacy Guard related"
-  "functions."
+        "A Bash library of GNU"
+        "Privacy Guard related"
+        "functions."
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
-  'any'
+        'any'
 )
 _http="https://${_git_http}.com"
 _ns="themartiancompany"
 url="${_http}/${_ns}/${_pkg}"
 license=(
-  'AGPL3'
+        'AGPL3'
 )
 depends=(
-  "bash"
-  "coreutils"
-  "gawk"
-  "gnupg"
-  "grep"
-  "util-linux"
+        "bash"
+        "coreutils"
+        "gawk"
+        "gnupg"
+        "grep"
+        "util-linux"
 )
 _libcrash_bash_docs_optdepends=(
-  "${_pkg}-docs:"
-    "Crash Bash"
-    "library documentation"
-    "and manuals."
+        "${_pkg}-docs:"
+        "Crash Bash"
+        "library documentation"
+        "and manuals."
 )
 _libcrash_bash_docs_ref_optdepends+=(
- "${_pkg}:"
-   "the package this documentation"
-   "package pertains to."
+        "${_pkg}:"
+        "the package this documentation"
+        "package pertains to."
 )
 optdepends=(
-  "${_libcrash_bash_docs_optdepends[*]}"
+        "${_libcrash_bash_docs_optdepends[*]}"
 )
 if [[ "${_os}" != "GNU/Linux" ]] && \
-   [[ "${_os}" == "Android" ]]; then
-  optdepends+=(
-  )
+        [[ "${_os}" == "Android" ]]; then
+optdepends+=(
+        )
 fi
 makedepends=(
-  'make'
+        'make'
 )
 if [[ "${_docs}" == "true" ]]; then
-  makedepends+=(
-    "${_py}-docutils"
-  )
+        makedepends+=(
+                "${_py}-docutils"
+        )
 fi
 checkdepends=(
-  "shellcheck"
+        "shellcheck"
 )
 source=()
 sha256sums=()
 _url="${url}"
 if [[ "${_offline}" == "true" ]]; then
-  _url="file://${HOME}/${_pkg}"
+        _url="file://${HOME}/${_pkg}"
 fi
 _tag_name="commit"
 _tag="${_commit}"
 _tarname="${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
-_sum="9a6f7ace1112cf7abf3b231f0cd133a58752e245b04fada0b1fd65c3e1765e1c"
-_sig_sum="e9435b39f5a361211209679fcb5329fa85af8014620cc070939e6fc4a98c27eb"
+_sum="c4ca2b1658d9dab38bd9ed48a76c10192866144062cc028bb1556d79683a014c"
+_sig_sum="df32ebfa689944a8bce540366cc4d998d9e0f9c9337f1336aaad1aa4bf1ebd6d"
 # Dvorak
 _evmfs_ns="0x87003Bd6C074C713783df04f36517451fF34CBEf"
 # Truocolo
