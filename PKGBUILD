@@ -74,63 +74,68 @@ pkgver="0.0.0.0.0.1.1.1.1.1"
 _commit="ef8a610ec3b53421e5e5b8f1195aef93e3ffe69b"
 pkgrel=1
 _pkgdesc=(
-        "A Bash library of GNU"
-        "Privacy Guard related"
-        "functions."
+  "A Bash library of GNU"
+  "Privacy Guard related"
+  "functions."
 )
 pkgdesc="${_pkgdesc[*]}"
 arch=(
-        'any'
+  'any'
 )
 _http="https://${_git_http}.com"
 _ns="themartiancompany"
 url="${_http}/${_ns}/${_pkg}"
 license=(
-        'AGPL3'
+  'AGPL3'
 )
 depends=(
-        "bash"
-        "coreutils"
-        "gawk"
-        "gnupg"
-        "grep"
-        "util-linux"
+  "bash"
+  "coreutils"
+  "gawk"
+  "gnupg"
+  "grep"
+  "util-linux"
 )
 _libcrash_bash_docs_optdepends=(
-        "${_pkg}-docs:"
-        "Crash Bash"
-        "library documentation"
-        "and manuals."
+  "${_pkg}-docs:"
+    "Crash Bash"
+    "library documentation"
+    "and manuals."
 )
 _libcrash_bash_docs_ref_optdepends+=(
-        "${_pkg}:"
-        "the package this documentation"
-        "package pertains to."
+  "${_pkg}:"
+    "the package this documentation"
+    "package pertains to."
 )
 optdepends=(
-        "${_libcrash_bash_docs_optdepends[*]}"
+  "${_libcrash_bash_docs_optdepends[*]}"
 )
-if [[ "${_os}" != "GNU/Linux" ]] && \
-        [[ "${_os}" == "Android" ]]; then
-optdepends+=(
-        )
-fi
 makedepends=(
-        'make'
+  'make'
 )
+if [[ "${_git}" == "true" ]]; then
+  makedepends+=(
+    "git"
+  )
+fi
+if [[ "${_evmfs}" == "true" ]]; then
+  makedepends+=(
+    "evmfs"
+  )
+fi
 if [[ "${_docs}" == "true" ]]; then
-        makedepends+=(
-                "${_py}-docutils"
-        )
+  makedepends+=(
+    "${_py}-docutils"
+  )
 fi
 checkdepends=(
-        "shellcheck"
+  "shellcheck"
 )
 source=()
 sha256sums=()
 _url="${url}"
 if [[ "${_offline}" == "true" ]]; then
-        _url="file://${HOME}/${_pkg}"
+  _url="file://${HOME}/${_pkg}"
 fi
 _tag_name="commit"
 _tag="${_commit}"
@@ -150,9 +155,6 @@ _evmfs_src="${_tarfile}::${_evmfs_uri}"
 _sig_uri="${_evmfs_dir}/${_sig_sum}"
 _sig_src="${_tarfile}.sig::${_sig_uri}"
 if [[ "${_evmfs}" == "true" ]]; then
-  makedepends+=(
-    "evmfs"
-  )
   if [[ "${_git}" == "false" ]]; then
     _src="${_evmfs_src}"
     source+=(
@@ -163,18 +165,20 @@ if [[ "${_evmfs}" == "true" ]]; then
     )
   fi
 elif [[ "${_evmfs}" == "false" ]]; then
-  if [[ "${_git}" == "true" ]]; then
-    makedepends+=(
-      "git"
-    )
-    _uri="git+${_url}#${_tag_name}=${_tag}?signed"
-    _src="${_tarname}::${_uri}"
+  if [[ "${_git}" == true ]]; then
+    _src="${_tarname}::git+${_url}#${_tag_name}=${_tag}?signed"
     _sum="SKIP"
-  elif [[ "${_git}" == "false" ]]; then
-    if [[ "${_tag_name}" == 'pkgver' ]]; then
-      _uri="${_url}/archive/refs/tags/${_tag}.${_archive_format}"
-    elif [[ "${_tag_name}" == "commit" ]]; then
-      _uri="${_url}/archive/${_commit}.${_archive_format}"
+  elif [[ "${_git}" == false ]]; then
+    _uri=""
+    if [[ "${_git_http}" == "github" ]]; then
+      if [[ "${_tag_name}" == "commit" ]]; then
+        _uri="${_url}/archive/${_commit}.${_archive_format}"
+        _sum="${_github_sum}"
+      fi
+    elif [[ "${_git_http}" == "gitlab" ]]; then
+      if [[ "${_tag_name}" == "commit" ]]; then
+        _uri="${_url}/-/archive/${_tag}/${_tag}.${_archive_format}"
+      fi
     fi
     _src="${_tarfile}::${_uri}"
   fi
@@ -186,10 +190,12 @@ sha256sums+=(
   "${_sum}"
 )
 validpgpkeys=(
-  # Truocolo <truocolo@aol.com>
+  # Truocolo
+  #   <truocolo@aol.com>
   '97E989E6CF1D2C7F7A41FF9F95684DBE23D6A3E9'
   'DD6732B02E6C88E9E27E2E0D5FC6652B9D9A6C01'
-  # Pellegrino Prevete (dvorak) <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
+  # Pellegrino Prevete (dvorak)
+  #   <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
   '12D8E3D7888F741E89F86EE0FEC8567A644F1D16'
 )
 
