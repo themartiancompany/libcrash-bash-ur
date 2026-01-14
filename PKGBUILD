@@ -72,7 +72,7 @@ if [[ "${_docs}" == "true" ]]; then
 fi
 pkgver="0.0.0.0.0.1.1.1.1.1"
 _commit="ef8a610ec3b53421e5e5b8f1195aef93e3ffe69b"
-pkgrel=9
+pkgrel=10
 _pkgdesc=(
   "A Bash library of GNU"
   "Privacy Guard related"
