@@ -27,7 +27,7 @@
 #     <pellegrinoprevete@gmail.com>
 #     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
-_evmfs_available="$( \
+_evmfs_available="$(
   command \
     -v \
     "evmfs" || \
@@ -39,7 +39,7 @@ if [[ ! -v "_evmfs" ]]; then
     _evmfs="false"
   fi
 fi
-_os="$( \
+_os="$(
   uname \
     -o)"
 if [[ ! -v "_git" ]]; then
@@ -72,7 +72,7 @@ if [[ "${_docs}" == "true" ]]; then
 fi
 pkgver="0.0.0.0.0.1.1.1.1.1"
 _commit="ef8a610ec3b53421e5e5b8f1195aef93e3ffe69b"
-pkgrel=8
+pkgrel=9
 _pkgdesc=(
   "A Bash library of GNU"
   "Privacy Guard related"
